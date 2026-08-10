@@ -1,5 +1,5 @@
 export const email = 'ktkinkel@gmail.com'
-export const linkedinUrl = 'https://www.linkedin.com/in/katie-k-92602250/'
+export const linkedinUrl = 'https://www.linkedin.com/in/katie-kinkel/'
 export const siteUrl = 'https://katiekinkel.com'
 export const jobTitle = 'AI QA, Evaluation & Operations Specialist'
 export const aiResumePdf = '/Katie-Kinkel-AI-QA-Resume.pdf'

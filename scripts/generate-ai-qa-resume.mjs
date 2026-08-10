@@ -99,7 +99,7 @@ const doc = new Document({
             muted('   ·   '),
             link('ktkinkel@gmail.com', 'mailto:ktkinkel@gmail.com'),
             muted('   ·   '),
-            link('LinkedIn', 'https://www.linkedin.com/in/katie-k-92602250/'),
+            link('LinkedIn', 'https://www.linkedin.com/in/katie-kinkel/'),
           ],
         }),
         new Paragraph({
