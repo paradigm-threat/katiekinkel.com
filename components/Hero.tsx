@@ -11,7 +11,7 @@ import {
 
 export function Hero() {
   return (
-    <section className="no-print web-only relative isolate min-h-[min(92dvh,900px)] overflow-hidden bg-[#eef3fb] text-slate-900 dark:bg-navy dark:text-white">
+    <section className="no-print web-only relative isolate overflow-hidden bg-[#eef3fb] text-slate-900 dark:bg-navy dark:text-white">
       <ThemeImage
         lightSrc="/assets/ai-network-background-light.png"
         darkSrc="/assets/ai-network-background.png"
@@ -24,7 +24,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#eef3fb] via-[#eef3fb]/92 to-[#eef3fb]/45 dark:from-navy dark:via-navy/90 dark:to-navy/55" />
       <div className="absolute inset-0 bg-gradient-to-t from-[#e8eef8] via-transparent to-white/40 dark:from-navy/90 dark:to-navy/40" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 lg:py-16">
         <div>
           <FadeIn>
             <p className="text-xs font-semibold tracking-[0.28em] text-slate-500 uppercase dark:text-white/65">
