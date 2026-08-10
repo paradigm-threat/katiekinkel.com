@@ -9,7 +9,8 @@ import {
   Workflow,
 } from '@/components/Marketing'
 import { Resume } from '@/components/Resume'
-import { email } from '@/lib/content'
+import { Linkedin, Mail } from 'lucide-react'
+import { email, linkedinUrl } from '@/lib/content'
 
 export default function HomePage() {
   return (
@@ -43,12 +44,24 @@ export default function HomePage() {
               Want help organizing, researching, prototyping, or QA-ing something with AI in the
               loop? Reach out — Katie reads every message herself.
             </p>
-            <a
-              href={`mailto:${email}`}
-              className="btn-gradient mt-8 inline-flex items-center rounded-xl px-6 py-3.5 text-base font-bold text-white shadow-md transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              {email}
-            </a>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a
+                href={`mailto:${email}`}
+                className="btn-gradient inline-flex items-center gap-2 rounded-xl px-6 py-3.5 text-base font-bold text-white shadow-md transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <Mail className="h-5 w-5" aria-hidden />
+                {email}
+              </a>
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3.5 text-base font-semibold text-foreground shadow-sm transition hover:bg-secondary outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              >
+                <Linkedin className="h-5 w-5 text-[#0A66C2]" aria-hidden />
+                LinkedIn
+              </a>
+            </div>
           </div>
         </section>
 

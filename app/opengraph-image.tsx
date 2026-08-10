@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 import { readFile } from 'fs/promises'
 import path from 'path'
 
-export const alt = 'Katie Kinkel — Turning AI into real-world impact'
+export const alt = 'Katie Kinkel — AI drafts, human QA, better UX'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -36,7 +36,7 @@ export default async function OpenGraphImage() {
             Katie Kinkel
           </div>
           <div style={{ fontSize: 30, marginTop: 18, opacity: 0.92, lineHeight: 1.3 }}>
-            Turning AI into real-world impact — with human QA that ships.
+            AI drafts. Human QA. Better UX.
           </div>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}

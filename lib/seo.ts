@@ -4,9 +4,9 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') || 'https://katiekinkel.com'
 
 export const SITE_NAME = 'Katie Kinkel'
-export const SITE_TITLE = 'Katie Kinkel | Turning AI into real-world impact'
+export const SITE_TITLE = 'Katie Kinkel | AI drafts, human QA, better UX'
 export const SITE_DESCRIPTION =
-  'Ex-Spotify Creative Support QA Buddy. AI-fluent generalist for research, organization, prototyping, and human review that turns drafts into reliable work.'
+  'Ex-Spotify Creative Support QA Buddy. AI-fluent generalist for research, organization, prototyping, human QA, and UX polish — drafts that ship clean.'
 
 export function absoluteUrl(path = '/'): string {
   if (path === '/' || path === '') return `${SITE_URL}/`
@@ -25,6 +25,7 @@ export const baseMetadata: Metadata = {
     'Katie Kinkel',
     'AI tools',
     'QA',
+    'UX',
     'Spotify',
     'Cursor',
     'GitHub Copilot',

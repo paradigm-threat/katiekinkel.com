@@ -1,9 +1,10 @@
-import { Mail } from 'lucide-react'
+import { Linkedin, Mail } from 'lucide-react'
 import {
   also,
   education,
   email,
   experience,
+  linkedinUrl,
   modelFamilies,
   objective,
   siteUrl,
@@ -32,6 +33,16 @@ export function Resume() {
           >
             <Mail className="h-3.5 w-3.5 no-print" aria-hidden />
             {email}
+          </a>
+          <span aria-hidden>·</span>
+          <a
+            className="inline-flex items-center gap-1.5 text-primary underline-offset-2 hover:underline"
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Linkedin className="h-3.5 w-3.5 no-print" aria-hidden />
+            LinkedIn
           </a>
           <span aria-hidden>·</span>
           <a

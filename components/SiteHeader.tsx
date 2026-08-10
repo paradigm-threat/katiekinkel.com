@@ -1,3 +1,5 @@
+import { Linkedin } from 'lucide-react'
+import { linkedinUrl } from '@/lib/content'
 import { PrintButton } from './PrintButton'
 import { ThemeSwitch } from './ThemeSwitch'
 
@@ -31,6 +33,15 @@ export function SiteHeader() {
           ))}
         </nav>
         <div className="flex flex-wrap items-center gap-2">
+          <a
+            href={linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Katie Kinkel on LinkedIn"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition hover:bg-secondary outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/15 dark:hover:bg-white/10"
+          >
+            <Linkedin className="h-4 w-4" aria-hidden />
+          </a>
           <PrintButton />
           <ThemeSwitch />
         </div>

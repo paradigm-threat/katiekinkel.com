@@ -28,7 +28,7 @@ export function Hero() {
           </FadeIn>
           <FadeIn delay={0.08}>
             <h1 className="font-display mt-4 max-w-xl text-4xl leading-[1.08] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-              Turning AI into <span className="text-gradient">real-world</span> impact.
+              AI drafts. Human <span className="text-gradient">QA</span>. Better UX.
             </h1>
           </FadeIn>
           <FadeIn delay={0.16}>

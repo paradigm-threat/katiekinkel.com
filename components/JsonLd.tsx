@@ -1,5 +1,5 @@
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo'
-import { email, modelFamilies, surfaces } from '@/lib/content'
+import { email, linkedinUrl, modelFamilies, surfaces } from '@/lib/content'
 
 export function JsonLd() {
   const data = {
@@ -33,7 +33,7 @@ export function JsonLd() {
           ...surfaces,
           ...modelFamilies,
         ],
-        sameAs: [`${SITE_URL}/Katie-Kinkel-Resume.pdf`],
+        sameAs: [linkedinUrl, `${SITE_URL}/Katie-Kinkel-Resume.pdf`],
       },
       {
         '@type': 'ProfilePage',

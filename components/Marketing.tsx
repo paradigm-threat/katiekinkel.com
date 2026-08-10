@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Briefcase } from 'lucide-react'
+import { Briefcase, Linkedin } from 'lucide-react'
 import { FadeIn } from './FadeIn'
 import { BrandMark, IconBadge, toolLogos } from './IconKit'
 import { ThemeImage } from './ThemeImage'
@@ -7,6 +7,7 @@ import {
   capabilities,
   email,
   highlights,
+  linkedinUrl,
   missionQuote,
   modelFamilies,
   proofItems,
@@ -140,18 +141,18 @@ export function Workflow() {
             How I work with AI
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-            Generate → review → ship. Research and drafts move fast; Katie&apos;s QA pass is the
-            quality gate before anything leaves the building.
+            Brief → draft → QA → UX. AI speeds the first pass; Katie&apos;s review is the quality
+            gate for clarity, accuracy, and usable experience.
           </p>
         </FadeIn>
         <FadeIn delay={0.1}>
           <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-3xl border border-border bg-white p-4 shadow-sm sm:p-8 dark:bg-card">
             <Image
-              src="/assets/ai-workflow-data-model-insights-impact.png"
-              alt="Workflow: Data to Model to Insights to Impact"
-              width={1200}
-              height={280}
-              className="h-auto w-full object-contain"
+              src="/assets/ai-workflow-brief-draft-qa-ux.png"
+              alt="Workflow: Brief to Draft to QA to UX"
+              width={1400}
+              height={440}
+              className="mx-auto h-auto w-full object-contain"
             />
           </div>
         </FadeIn>
@@ -260,12 +261,23 @@ export function StatusBar() {
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-5 sm:px-6">
           <p className="text-sm text-white/60">© {new Date().getFullYear()} Katie Kinkel</p>
-          <a
-            href={`mailto:${email}`}
-            className="text-sm font-semibold text-teal-glow hover:underline outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
-          >
-            {email}
-          </a>
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href={linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-teal-glow hover:underline outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
+            >
+              <Linkedin className="h-4 w-4" aria-hidden />
+              LinkedIn
+            </a>
+            <a
+              href={`mailto:${email}`}
+              className="text-sm font-semibold text-teal-glow hover:underline outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
+            >
+              {email}
+            </a>
+          </div>
         </div>
       </div>
     </section>

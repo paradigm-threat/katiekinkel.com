@@ -1,4 +1,5 @@
 export const email = 'ktkinkel@gmail.com'
+export const linkedinUrl = 'https://www.linkedin.com/in/katie-k-92602250/'
 export const siteUrl = 'https://katiekinkel.com'
 
 export const surfaces = ['Cursor', 'Copilot', 'ChatGPT'] as const
@@ -39,8 +40,8 @@ export const valueCards = [
   {
     title: 'QA Driven',
     body: 'Spotify QA Buddy instincts: every AI draft gets a human pass. Judgment is the product.',
-    darkImage: '/assets/icon-data-driven.png',
-    lightImage: '/assets/icon-data-driven-light.png',
+    darkImage: '/assets/icon-qa-driven.png',
+    lightImage: '/assets/icon-qa-driven-light.png',
   },
   {
     title: 'Collaborative',
@@ -51,11 +52,11 @@ export const valueCards = [
 ] as const
 
 export const techFocus = [
-  { label: 'LLM applications', icon: 'bot' as const },
+  { label: 'AI-assisted drafting', icon: 'bot' as const },
   { label: 'Human QA & review', icon: 'shield' as const },
+  { label: 'UX polish', icon: 'layout' as const },
   { label: 'Ops & organization', icon: 'folders' as const },
-  { label: 'Prototyping', icon: 'layout' as const },
-  { label: 'Research & drafting', icon: 'search' as const },
+  { label: 'Research & docs', icon: 'search' as const },
   { label: 'Stakeholder comms', icon: 'message' as const },
 ] as const
 
@@ -86,8 +87,8 @@ export const values = [
     icon: 'target' as const,
   },
   {
-    title: 'Impact',
-    body: 'Uses AI where it speeds real work: legal aid support, association minutes, rescue logistics, websites.',
+    title: 'Quality',
+    body: 'Every AI draft gets a human QA pass — accuracy, tone, and UX checked before anything ships.',
     icon: 'rocket' as const,
   },
   {
@@ -230,4 +231,4 @@ export const objective =
   'I strive for excellence, appreciate context, and want to share a positive experience with my team — now amplified by AI, grounded by review.'
 
 export const missionQuote =
-  'I use AI to solve meaningful problems and create solutions that make a real-world difference — with a human review pass on every deliverable.'
+  'I use AI to draft faster, then apply human QA so the UX is clear, accurate, and ready to ship.'
