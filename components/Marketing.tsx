@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { Briefcase } from 'lucide-react'
 import { FadeIn } from './FadeIn'
 import { BrandMark, IconBadge, toolLogos } from './IconKit'
+import { ThemeImage } from './ThemeImage'
 import {
   capabilities,
   email,
@@ -28,16 +29,17 @@ export function ValueCards() {
       <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {valueCards.map((item, i) => (
           <FadeIn key={item.title} delay={i * 0.06}>
-            <article className="card-dark flex h-full flex-col rounded-2xl p-5 text-white shadow-xl transition duration-300 hover:-translate-y-1">
-              <Image
-                src={item.image}
+            <article className="card-surface flex h-full flex-col rounded-2xl p-5 shadow-xl transition duration-300 hover:-translate-y-1">
+              <ThemeImage
+                lightSrc={item.lightImage}
+                darkSrc={item.darkImage}
                 alt=""
                 width={160}
                 height={120}
                 className="mx-auto h-24 w-auto object-contain"
               />
-              <h3 className="mt-4 text-lg font-bold">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/65">{item.body}</p>
+              <h3 className="mt-4 text-lg font-bold text-foreground">{item.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
             </article>
           </FadeIn>
         ))}
@@ -97,22 +99,22 @@ export function SkillsTools() {
           </div>
 
           <FadeIn delay={0.1}>
-            <aside className="rounded-3xl border border-border bg-[#eef1f6] p-6 shadow-sm dark:bg-card">
-              <p className="text-xs font-bold tracking-[0.2em] text-navy uppercase dark:text-foreground">
+            <aside className="rounded-3xl border border-border bg-secondary/60 p-6 shadow-sm dark:bg-card">
+              <p className="text-xs font-bold tracking-[0.2em] text-foreground uppercase">
                 Tech focus
               </p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {techFocus.map((item) => (
                   <li
                     key={item.label}
-                    className="inline-flex items-center gap-2.5 rounded-full bg-navy px-4 py-2.5 text-sm font-medium text-white shadow-sm"
+                    className="inline-flex items-center gap-2.5 rounded-full bg-navy px-4 py-2.5 text-sm font-medium text-white shadow-sm dark:bg-slate-900"
                   >
                     <IconBadge name={item.icon} className="h-4 w-4 text-sky-300" />
                     {item.label}
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 overflow-hidden rounded-2xl border border-black/5 bg-white/70 p-3 dark:bg-background/40">
+              <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-white p-3 dark:bg-background/40">
                 <Image
                   src="/assets/katie-professional-cartoon-portrait-square.png"
                   alt="Katie Kinkel illustrated portrait"

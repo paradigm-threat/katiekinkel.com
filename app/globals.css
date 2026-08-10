@@ -105,6 +105,17 @@
     background: linear-gradient(180deg, #151e31 0%, #0f1624 100%);
     border: 1px solid rgb(148 163 184 / 0.14);
   }
+
+  .card-surface {
+    background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 100%);
+    border: 1px solid rgb(148 163 184 / 0.28);
+    color: inherit;
+  }
+
+  .dark .card-surface {
+    background: linear-gradient(180deg, #151e31 0%, #0f1624 100%);
+    border: 1px solid rgb(148 163 184 / 0.14);
+  }
 }
 
 @media print {

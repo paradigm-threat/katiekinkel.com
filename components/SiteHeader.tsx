@@ -11,11 +11,11 @@ const links = [
 
 export function SiteHeader() {
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-white/10 bg-navy/80 text-white backdrop-blur-xl">
+    <header className="no-print sticky top-0 z-50 border-b border-border/80 bg-background/85 text-foreground backdrop-blur-xl dark:border-white/10 dark:bg-navy/80 dark:text-white">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <a
           href="#top"
-          className="font-display text-lg font-bold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
+          className="font-display text-lg font-bold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-primary"
         >
           Katie Kinkel
         </a>
@@ -24,7 +24,7 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
+              className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-secondary hover:text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white"
             >
               {link.label}
             </a>

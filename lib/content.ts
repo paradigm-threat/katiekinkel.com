@@ -22,27 +22,31 @@ export const focusItems = [
   { title: 'Prototypes & proofreading', icon: 'layout' as const },
 ] as const
 
-/** Illustrated value cards — use assets in /public/assets */
+/** Illustrated value cards — dark + light assets in /public/assets */
 export const valueCards = [
   {
     title: 'Problem Solver',
     body: 'I break down messy requests into clear steps — then verify the result before anyone depends on it.',
-    image: '/assets/icon-problem-solver.png',
+    darkImage: '/assets/icon-problem-solver.png',
+    lightImage: '/assets/icon-problem-solver-light.png',
   },
   {
     title: 'Builder',
     body: 'I spin up website prototypes, docs, and process sketches so stakeholders can react to something real.',
-    image: '/assets/icon-builder.png',
+    darkImage: '/assets/icon-builder.png',
+    lightImage: '/assets/icon-builder-light.png',
   },
   {
     title: 'QA Driven',
     body: 'Spotify QA Buddy instincts: every AI draft gets a human pass. Judgment is the product.',
-    image: '/assets/icon-data-driven.png',
+    darkImage: '/assets/icon-data-driven.png',
+    lightImage: '/assets/icon-data-driven-light.png',
   },
   {
     title: 'Collaborative',
     body: 'I thrive across support hubs, neighborhood minutes, and rescue ops — clear communication everyone can follow.',
-    image: '/assets/icon-collaboration.png',
+    darkImage: '/assets/icon-collaboration.png',
+    lightImage: '/assets/icon-collaboration-light.png',
   },
 ] as const
 
