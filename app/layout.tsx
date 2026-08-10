@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next'
-import { Fraunces, Source_Sans_3 } from 'next/font/google'
+import { Outfit, Source_Sans_3 } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { JsonLd } from '@/components/JsonLd'
 import { baseMetadata } from '@/lib/seo'
 import './globals.css'
 
-const display = Fraunces({
+const display = Outfit({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-display',
@@ -23,8 +23,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f4faf7' },
-    { media: '(prefers-color-scheme: dark)', color: '#0d1614' },
+    { media: '(prefers-color-scheme: light)', color: '#f8fafc' },
+    { media: '(prefers-color-scheme: dark)', color: '#0b1220' },
   ],
 }
 

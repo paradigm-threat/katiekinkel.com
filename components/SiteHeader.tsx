@@ -3,19 +3,19 @@ import { ThemeSwitch } from './ThemeSwitch'
 
 const links = [
   { href: '#ai', label: 'AI work' },
-  { href: '#models', label: 'Models' },
-  { href: '#proof', label: 'Proof' },
+  { href: '#models', label: 'Skills' },
+  { href: '#proof', label: 'Projects' },
   { href: '#kk-resume', label: 'Resume' },
   { href: '#contact', label: 'Contact' },
 ] as const
 
 export function SiteHeader() {
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <header className="no-print sticky top-0 z-50 border-b border-white/10 bg-navy/80 text-white backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <a
           href="#top"
-          className="font-display text-lg font-semibold tracking-tight text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="font-display text-lg font-bold tracking-tight outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
         >
           Katie Kinkel
         </a>
@@ -24,7 +24,7 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition hover:bg-primary/10 hover:text-foreground outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="rounded-full px-3 py-2 text-sm font-medium text-white/70 transition hover:bg-white/10 hover:text-white outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
             >
               {link.label}
             </a>

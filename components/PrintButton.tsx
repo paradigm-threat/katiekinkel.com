@@ -8,7 +8,7 @@ export function PrintButton() {
       <a
         href="/Katie-Kinkel-Resume.pdf"
         download
-        className="inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md transition hover:opacity-90"
+        className="inline-flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm font-semibold text-white transition hover:bg-white/20"
         title="Download PDF resume"
       >
         <FileDown size={16} aria-hidden />
@@ -17,7 +17,7 @@ export function PrintButton() {
       <a
         href="/Katie-Kinkel-Resume.docx"
         download
-        className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-3.5 py-2.5 text-sm font-semibold text-secondary-foreground shadow-sm transition hover:border-primary hover:text-primary"
+        className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-3 py-2 text-sm font-semibold text-white/90 transition hover:border-white/40"
         title="Download DOCX resume"
       >
         <FileText size={16} aria-hidden />
@@ -26,7 +26,7 @@ export function PrintButton() {
       <button
         type="button"
         onClick={() => window.print()}
-        className="inline-flex cursor-pointer items-center gap-2 rounded-full border border-border bg-secondary px-3.5 py-2.5 text-sm font-semibold text-secondary-foreground shadow-sm transition hover:border-primary hover:text-primary"
+        className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-white/20 px-3 py-2 text-sm font-semibold text-white/90 transition hover:border-white/40"
         title="Print / save as PDF"
       >
         <Printer size={16} aria-hidden />

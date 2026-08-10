@@ -15,6 +15,81 @@ export const modelFamilies = [
   'Composer',
 ] as const
 
+export const focusItems = [
+  { title: 'Human QA on AI output', icon: 'shield' as const },
+  { title: 'LLM-assisted workflows', icon: 'bot' as const },
+  { title: 'Ops & organization', icon: 'folders' as const },
+  { title: 'Prototypes & proofreading', icon: 'layout' as const },
+] as const
+
+export const strengths = [
+  {
+    title: 'Problem Solver',
+    body: 'Turns messy requests into clear steps — then verifies the result before anyone depends on it.',
+    icon: 'target' as const,
+  },
+  {
+    title: 'Builder',
+    body: 'Spins up website prototypes, docs, and process sketches so stakeholders can react to something real.',
+    icon: 'code' as const,
+  },
+  {
+    title: 'QA Driven',
+    body: 'Spotify QA Buddy instincts: every AI draft gets a human pass. Judgment is the product.',
+    icon: 'chart' as const,
+  },
+  {
+    title: 'Collaborative',
+    body: 'Neighborhood minutes, rescue ops, support hubs — clear communication that keeps people moving together.',
+    icon: 'users' as const,
+  },
+] as const
+
+export const skillTags = [
+  { label: 'Cursor', icon: 'cursor' as const },
+  { label: 'GitHub Copilot', icon: 'copilot' as const },
+  { label: 'ChatGPT', icon: 'chat' as const },
+  { label: 'Claude', icon: 'claude' as const },
+  { label: 'Gemini', icon: 'gemini' as const },
+  { label: 'Grok', icon: 'grok' as const },
+  { label: 'QA & nesting', icon: 'check' as const },
+  { label: 'Research', icon: 'search' as const },
+  { label: 'Prototyping', icon: 'spark' as const },
+  { label: 'Minutes & docs', icon: 'file' as const },
+  { label: 'Ops hygiene', icon: 'cpu' as const },
+  { label: 'Stakeholder comms', icon: 'message' as const },
+] as const
+
+export const values = [
+  {
+    title: 'Curiosity',
+    body: 'Jumps into new AI tools eagerly — and learns the underlying workflow well enough to direct them.',
+    icon: 'lightbulb' as const,
+  },
+  {
+    title: 'Ownership',
+    body: 'Owns the final product. AI drafts; Katie reviews, corrects, and ships.',
+    icon: 'target' as const,
+  },
+  {
+    title: 'Impact',
+    body: 'Uses AI where it speeds real work: legal aid support, association minutes, rescue logistics, websites.',
+    icon: 'rocket' as const,
+  },
+  {
+    title: 'Purpose',
+    body: 'Professional and enthusiastic — helping people and organizations get organized without losing the human touch.',
+    icon: 'heart' as const,
+  },
+] as const
+
+export const highlights = [
+  { label: 'Years at Spotify CS / QA', value: '3+', icon: 'briefcase' as const },
+  { label: 'AI surfaces in daily use', value: '3', icon: 'layers' as const },
+  { label: 'Model families fluent in', value: '9+', icon: 'cpu' as const },
+  { label: 'Community ops roles', value: '3+', icon: 'users' as const },
+] as const
+
 export const capabilities = [
   {
     title: 'Organization',

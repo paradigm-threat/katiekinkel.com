@@ -13,7 +13,7 @@ export function ThemeSwitch() {
   }, [])
 
   if (!mounted) {
-    return <div className="no-print h-9 w-[7.5rem] rounded-full bg-secondary/60" aria-hidden />
+    return <div className="no-print h-9 w-[7.5rem] rounded-full bg-white/10" aria-hidden />
   }
 
   const options = [
@@ -24,7 +24,7 @@ export function ThemeSwitch() {
 
   return (
     <div
-      className="no-print flex h-fit items-center gap-1 rounded-full border border-primary/15 bg-background/70 p-1 shadow-inner backdrop-blur-md"
+      className="no-print flex h-fit items-center gap-1 rounded-full border border-white/15 bg-white/5 p-1"
       role="group"
       aria-label="Color theme"
     >
@@ -35,10 +35,10 @@ export function ThemeSwitch() {
             key={id}
             type="button"
             onClick={() => setTheme(id)}
-            className={`flex items-center justify-center rounded-full p-2 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-primary ${
+            className={`flex items-center justify-center rounded-full p-2 transition-all duration-300 outline-none focus-visible:ring-2 focus-visible:ring-teal-glow ${
               active
-                ? 'bg-primary text-primary-foreground scale-105 shadow-md'
-                : 'text-muted-foreground hover:bg-primary/10 hover:text-foreground'
+                ? 'bg-teal-glow text-navy scale-105 shadow-md'
+                : 'text-white/70 hover:bg-white/10 hover:text-white'
             }`}
             title={title}
             aria-label={title}
