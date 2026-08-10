@@ -34,7 +34,6 @@ export const baseMetadata: Metadata = {
     '24-7 Intouch',
     'remote contract',
     'AI operations',
-    'resume',
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,

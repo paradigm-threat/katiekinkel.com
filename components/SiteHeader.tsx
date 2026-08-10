@@ -1,13 +1,11 @@
 import { Linkedin } from 'lucide-react'
 import { linkedinUrl } from '@/lib/content'
-import { PrintButton } from './PrintButton'
 import { ThemeSwitch } from './ThemeSwitch'
 
 const links = [
   { href: '#evaluation', label: 'Evaluation' },
   { href: '#proof', label: 'Projects' },
   { href: '#models', label: 'Skills' },
-  { href: '#kk-resume', label: 'Resume' },
   { href: '#hire', label: 'Hire' },
 ] as const
 
@@ -42,7 +40,6 @@ export function SiteHeader() {
             <Linkedin className="h-4 w-4 text-[#0A66C2]" aria-hidden />
             LinkedIn
           </a>
-          <PrintButton />
           <ThemeSwitch />
         </div>
       </div>

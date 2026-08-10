@@ -48,7 +48,7 @@ export function JsonLd() {
           ...surfaces,
           ...modelFamilies,
         ],
-        sameAs: [linkedinUrl, SITE_URL, `${SITE_URL}/Katie-Kinkel-AI-QA-Resume.pdf`],
+        sameAs: [linkedinUrl, SITE_URL],
         hasOccupation: {
           '@type': 'Occupation',
           name: jobTitle,

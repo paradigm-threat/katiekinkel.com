@@ -2,8 +2,6 @@ export const email = 'ktkinkel@gmail.com'
 export const linkedinUrl = 'https://www.linkedin.com/in/katie-kinkel/'
 export const siteUrl = 'https://katiekinkel.com'
 export const jobTitle = 'AI QA, Evaluation & Operations Specialist'
-export const aiResumePdf = '/Katie-Kinkel-AI-QA-Resume.pdf'
-export const fullResumePdf = '/Katie-Kinkel-Resume.pdf'
 
 export const surfaces = ['Cursor', 'Copilot', 'ChatGPT'] as const
 

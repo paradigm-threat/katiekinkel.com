@@ -10,9 +10,8 @@ import {
   WhatIBring,
   Workflow,
 } from '@/components/Marketing'
-import { Resume } from '@/components/Resume'
-import { Download, Linkedin, Mail } from 'lucide-react'
-import { aiResumePdf, email, fullResumePdf, linkedinUrl } from '@/lib/content'
+import { Linkedin, Mail } from 'lucide-react'
+import { email, linkedinUrl } from '@/lib/content'
 
 export default function HomePage() {
   return (
@@ -27,27 +26,6 @@ export default function HomePage() {
         <SkillsTools />
         <Workflow />
         <WhatIBring />
-
-        <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12">
-          <div className="no-print mb-6 flex flex-wrap items-center gap-3">
-            <a
-              href={aiResumePdf}
-              download
-              className="btn-gradient inline-flex items-center gap-2 rounded-xl px-4 py-2.5 text-sm font-bold text-white shadow-md transition hover:brightness-110"
-            >
-              <Download className="h-4 w-4" aria-hidden />
-              Download AI QA Resume — PDF
-            </a>
-            <a
-              href={fullResumePdf}
-              download
-              className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm transition hover:bg-secondary"
-            >
-              Full résumé PDF
-            </a>
-          </div>
-          <Resume />
-        </div>
 
         <section
           id="hire"
@@ -80,14 +58,6 @@ export default function HomePage() {
               >
                 <Linkedin className="h-5 w-5 text-[#0A66C2]" aria-hidden />
                 LinkedIn
-              </a>
-              <a
-                href={aiResumePdf}
-                download
-                className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-3.5 text-base font-semibold text-foreground shadow-sm transition hover:bg-secondary outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <Download className="h-5 w-5" aria-hidden />
-                Download Resume
               </a>
             </div>
             <p className="mt-4 text-sm text-muted-foreground">

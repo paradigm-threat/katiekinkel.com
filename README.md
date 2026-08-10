@@ -15,20 +15,11 @@ Personal site for **Katie Kinkel** — AI QA, evaluation & operations specialist
 
 ```bash
 npm install
-npm run generate:resume      # full résumé → DOCX + PDF (LibreOffice)
-npm run generate:ai-resume   # AI QA one-pager → DOCX + PDF (LibreOffice)
 npm run dev
 npm run build
 ```
 
-Resume generators embed the LinkedIn profile URL from the script headers (`https://www.linkedin.com/in/katie-kinkel/`). The live site uses `linkedinUrl` in `lib/content.ts` for header, hero, contact, and JSON-LD.
-
-## Resume downloads
-
-- [`/Katie-Kinkel-AI-QA-Resume.pdf`](./public/Katie-Kinkel-AI-QA-Resume.pdf) · [DOCX](./public/Katie-Kinkel-AI-QA-Resume.docx)
-- [`/Katie-Kinkel-Resume.pdf`](./public/Katie-Kinkel-Resume.pdf) · [DOCX](./public/Katie-Kinkel-Resume.docx)
-
-Use **Print** in the header for a résumé-only print layout.
+Site contact links use `linkedinUrl` and `email` from `lib/content.ts`.
 
 ## Branch
 

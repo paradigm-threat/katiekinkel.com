@@ -1,8 +1,7 @@
-import { ArrowRight, Download, Linkedin } from 'lucide-react'
+import { ArrowRight, Linkedin } from 'lucide-react'
 import { FadeIn } from './FadeIn'
 import { ThemeImage } from './ThemeImage'
 import {
-  aiResumePdf,
   availabilityLine,
   heroSubheadline,
   linkedinUrl,
@@ -44,29 +43,14 @@ export function Hero() {
           <FadeIn delay={0.22}>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href={aiResumePdf}
-                download
-                className="btn-gradient inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold tracking-wide text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <Download className="h-4 w-4" aria-hidden />
-                Download AI QA Resume — PDF
-              </a>
-              <p className="max-w-xs text-xs font-medium leading-snug text-slate-500 dark:text-white/60">
-                Available for work · {availabilityLine}
-              </p>
-            </div>
-          </FadeIn>
-          <FadeIn delay={0.28}>
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <a
                 href="#hire"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300/80 bg-white/90 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-white outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+                className="btn-gradient inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold tracking-wide text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 Hire Katie
               </a>
               <a
                 href="#proof"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-slate-900 outline-none focus-visible:ring-2 focus-visible:ring-primary dark:text-white/85 dark:hover:text-white"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300/80 bg-white/90 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-white outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
               >
                 View projects
                 <ArrowRight className="h-4 w-4" aria-hidden />
@@ -81,6 +65,11 @@ export function Hero() {
                 LinkedIn
               </a>
             </div>
+          </FadeIn>
+          <FadeIn delay={0.28}>
+            <p className="mt-4 max-w-xl text-xs font-medium leading-snug text-slate-500 dark:text-white/60">
+              Available for work · {availabilityLine}
+            </p>
           </FadeIn>
           <FadeIn delay={0.34}>
             <p className="mt-6 inline-flex max-w-xl items-center rounded-full border border-teal-500/25 bg-teal-500/10 px-4 py-2 text-sm font-medium text-teal-800 dark:border-teal-glow/30 dark:bg-teal-glow/10 dark:text-teal-100">
