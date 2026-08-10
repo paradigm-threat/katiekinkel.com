@@ -117,8 +117,5 @@ export const toolLogos = [
   { name: 'copilot' as const, label: 'GitHub Copilot' },
   { name: 'claude' as const, label: 'Claude' },
   { name: 'gemini' as const, label: 'Gemini' },
-  { name: 'anthropic' as const, label: 'Anthropic' },
-  { name: 'spotify' as const, label: 'Spotify (alum)' },
   { name: 'notion' as const, label: 'Notion' },
-  { name: 'vercel' as const, label: 'Vercel' },
 ]

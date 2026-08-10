@@ -1,8 +1,13 @@
-import { ArrowRight, Download } from 'lucide-react'
+import { ArrowRight, Download, Linkedin } from 'lucide-react'
 import { FadeIn } from './FadeIn'
-import { IconBadge } from './IconKit'
 import { ThemeImage } from './ThemeImage'
-import { focusItems } from '@/lib/content'
+import {
+  aiResumePdf,
+  availabilityLine,
+  heroSubheadline,
+  linkedinUrl,
+  spotifyProofLine,
+} from '@/lib/content'
 
 export function Hero() {
   return (
@@ -23,7 +28,7 @@ export function Hero() {
         <div>
           <FadeIn>
             <p className="text-xs font-semibold tracking-[0.28em] text-slate-500 uppercase dark:text-white/65">
-              Katie Kinkel
+              Katie Kinkel · Available for work
             </p>
           </FadeIn>
           <FadeIn delay={0.08}>
@@ -33,20 +38,31 @@ export function Hero() {
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-white/75">
-              Ex-Spotify Creative Support &amp; QA Buddy with a passion for solving messy problems,
-              building with Cursor / Copilot / ChatGPT, and shipping outcomes that hold up under
-              human review.
+              {heroSubheadline}
             </p>
           </FadeIn>
-          <FadeIn delay={0.24}>
-            <div className="mt-8 flex flex-wrap items-center gap-4">
+          <FadeIn delay={0.22}>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <a
-                href="/Katie-Kinkel-Resume.pdf"
+                href={aiResumePdf}
                 download
                 className="btn-gradient inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold tracking-wide text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
                 <Download className="h-4 w-4" aria-hidden />
-                View resume
+                Download AI QA Resume — PDF
+              </a>
+              <p className="max-w-xs text-xs font-medium leading-snug text-slate-500 dark:text-white/60">
+                Available for work · {availabilityLine}
+              </p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={0.28}>
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <a
+                href="#hire"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300/80 bg-white/90 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-white outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/15"
+              >
+                Hire Katie
               </a>
               <a
                 href="#proof"
@@ -55,23 +71,21 @@ export function Hero() {
                 View projects
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
+              <a
+                href={linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-[#0A66C2]/30 bg-white/90 px-4 py-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-white outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/20 dark:bg-white/10 dark:text-white"
+              >
+                <Linkedin className="h-4 w-4 text-[#0A66C2]" aria-hidden />
+                LinkedIn
+              </a>
             </div>
           </FadeIn>
-
-          <FadeIn delay={0.3}>
-            <ul className="mt-10 grid gap-3 sm:grid-cols-2">
-              {focusItems.map((item) => (
-                <li
-                  key={item.title}
-                  className="flex items-center gap-3 rounded-xl border border-slate-200/80 bg-white/80 px-3 py-2.5 text-sm text-slate-700 shadow-sm backdrop-blur-sm dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:shadow-none"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-500/10 dark:bg-teal-glow/15">
-                    <IconBadge name={item.icon} className="h-4 w-4 text-teal-600 dark:text-teal-glow" />
-                  </span>
-                  {item.title}
-                </li>
-              ))}
-            </ul>
+          <FadeIn delay={0.34}>
+            <p className="mt-6 inline-flex max-w-xl items-center rounded-full border border-teal-500/25 bg-teal-500/10 px-4 py-2 text-sm font-medium text-teal-800 dark:border-teal-glow/30 dark:bg-teal-glow/10 dark:text-teal-100">
+              {spotifyProofLine}
+            </p>
           </FadeIn>
         </div>
 

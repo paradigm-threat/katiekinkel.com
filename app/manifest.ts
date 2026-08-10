@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'Katie Kinkel',
     short_name: 'Katie Kinkel',
     description:
-      'AI-fluent QA & operations generalist — Cursor, Copilot, ChatGPT, with human review.',
+      'AI QA, LLM evaluation & human-in-the-loop specialist — available for remote part-time and contract work.',
     start_url: '/',
     display: 'standalone',
     background_color: '#f4faf7',

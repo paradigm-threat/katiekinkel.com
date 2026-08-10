@@ -5,12 +5,12 @@ import { BrandMark, IconBadge, toolLogos } from './IconKit'
 import { ThemeImage } from './ThemeImage'
 import {
   capabilities,
+  caseStudies,
   email,
+  evaluationCriteria,
   highlights,
   linkedinUrl,
   missionQuote,
-  modelFamilies,
-  proofItems,
   skillTags,
   surfaces,
   techFocus,
@@ -18,14 +18,48 @@ import {
   values,
 } from '@/lib/content'
 
+export function Evaluation() {
+  return (
+    <section
+      id="evaluation"
+      className="no-print web-only scroll-mt-24 border-b border-border/70 bg-background py-16"
+      aria-labelledby="evaluation-heading"
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <FadeIn>
+          <h2
+            id="evaluation-heading"
+            className="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+          >
+            AI Evaluation
+          </h2>
+          <p className="mt-3 max-w-2xl text-muted-foreground">
+            What Katie evaluates on every model draft — before anything ships.
+          </p>
+        </FadeIn>
+        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {evaluationCriteria.map((item, i) => (
+            <FadeIn key={item.title} delay={i * 0.03}>
+              <li className="h-full rounded-2xl border border-border bg-card p-5 shadow-sm">
+                <h3 className="font-semibold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              </li>
+            </FadeIn>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
 export function ValueCards() {
   return (
     <section
-      className="no-print web-only relative z-10 -mt-8 px-4 sm:-mt-12 sm:px-6"
+      className="no-print web-only relative z-10 px-4 py-12 sm:px-6"
       aria-labelledby="values-heading"
     >
       <h2 id="values-heading" className="sr-only">
-        Core strengths
+        Hire focus areas
       </h2>
       <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {valueCards.map((item, i) => (
@@ -49,6 +83,30 @@ export function ValueCards() {
   )
 }
 
+export function SpotifyProofStrip() {
+  return (
+    <section className="no-print web-only border-y border-border/70 bg-secondary/40 py-8" aria-label="Spotify QA proof">
+      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+        <div>
+          <p className="text-xs font-bold tracking-[0.2em] text-primary uppercase">
+            Spotify Support / QA experience
+          </p>
+          <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Via 24-7 Intouch: QA audits, alignments, nesting assistance, Guru process feedback,
+            LIO &amp; Marquee ROTAs, and the CrS Phoenix Hub — 3+ years Creative Support / QA Buddy.
+          </p>
+        </div>
+        <a
+          href="#proof"
+          className="shrink-0 text-sm font-semibold text-primary underline-offset-2 hover:underline"
+        >
+          See case studies →
+        </a>
+      </div>
+    </section>
+  )
+}
+
 export function SkillsTools() {
   return (
     <section id="models" className="no-print web-only scroll-mt-24 py-20" aria-labelledby="skills-heading">
@@ -60,8 +118,9 @@ export function SkillsTools() {
                 Skills &amp; tools
               </h2>
               <p className="mt-3 max-w-xl text-muted-foreground">
-                Surfaces: {surfaces.join(' · ')}. Brand logos for the stack Katie actually works in —
-                model families stay unversioned because tools rotate; QA judgment does not.
+                Skill-first: evaluation, judgment, QA, research, operations, and communication.
+                Surfaces Katie works in daily: {surfaces.join(' · ')}. Model families stay
+                unversioned because tools rotate; QA judgment does not.
               </p>
             </FadeIn>
 
@@ -72,10 +131,18 @@ export function SkillsTools() {
                     <span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-border bg-white shadow-sm dark:bg-card">
                       <BrandMark name={tool.name} className="h-7 w-7" />
                     </span>
-                    <span className="text-xs font-medium text-muted-foreground">{tool.label}</span>
+                    <span className="max-w-[7rem] text-center text-xs font-medium text-muted-foreground">
+                      {tool.label}
+                    </span>
                   </li>
                 ))}
               </ul>
+            </FadeIn>
+
+            <FadeIn delay={0.1}>
+              <p className="mt-6 inline-flex rounded-full border border-border bg-secondary/60 px-4 py-2 text-xs font-medium text-muted-foreground">
+                Spotify Support / QA via 24-7 Intouch
+              </p>
             </FadeIn>
 
             <FadeIn delay={0.12}>
@@ -91,18 +158,12 @@ export function SkillsTools() {
                 ))}
               </ul>
             </FadeIn>
-
-            <FadeIn delay={0.16}>
-              <p className="mt-6 text-sm text-muted-foreground">
-                Also fluent across: {modelFamilies.join(' · ')}
-              </p>
-            </FadeIn>
           </div>
 
           <FadeIn delay={0.1}>
             <aside className="rounded-3xl border border-border bg-secondary/60 p-6 shadow-sm dark:bg-card">
               <p className="text-xs font-bold tracking-[0.2em] text-foreground uppercase">
-                Tech focus
+                Capability focus
               </p>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {techFocus.map((item) => (
@@ -115,15 +176,6 @@ export function SkillsTools() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 overflow-hidden rounded-2xl border border-border bg-white p-3 dark:bg-background/40">
-                <Image
-                  src="/assets/katie-professional-cartoon-portrait-square.png"
-                  alt="Katie Kinkel illustrated portrait"
-                  width={480}
-                  height={480}
-                  className="mx-auto h-auto w-full max-w-[280px] object-contain"
-                />
-              </div>
             </aside>
           </FadeIn>
         </div>
@@ -141,7 +193,7 @@ export function Workflow() {
             How I work with AI
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-center text-muted-foreground">
-            Brief → draft → QA → UX. AI speeds the first pass; Katie&apos;s review is the quality
+            Brief → draft → QA → UX. AI speeds the first pass; Katie&apos;s review is the reliability
             gate for clarity, accuracy, and usable experience.
           </p>
         </FadeIn>
@@ -207,23 +259,68 @@ export function Proof() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <FadeIn>
           <h2 id="proof-heading" className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
-            Proof in the wild
+            Case studies
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Post-Spotify work where AI sped things up and Katie made sure they were right.
+            Problem → AI used → what Katie reviewed → result. Flagship projects lead; Spotify QA
+            proof sits near the top.
           </p>
         </FadeIn>
-        <ol className="mt-10 grid gap-4 md:grid-cols-2">
-          {proofItems.map((item, i) => (
-            <FadeIn key={item.title} delay={i * 0.05}>
-              <li className="flex h-full gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                  <IconBadge name="check" className="h-5 w-5 text-primary" />
-                </span>
-                <div>
-                  <h3 className="font-semibold">{item.title}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+        <ol className="mt-10 grid gap-6">
+          {caseStudies.map((item, i) => (
+            <FadeIn key={item.title} delay={Math.min(i * 0.04, 0.2)}>
+              <li
+                className={`rounded-2xl border bg-card p-5 shadow-sm sm:p-6 ${
+                  item.flagship ? 'border-primary/35 ring-1 ring-primary/15' : 'border-border'
+                }`}
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <h3 className="text-lg font-semibold text-foreground">{item.title}</h3>
+                  {item.metric ? (
+                    <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+                      {item.metric}
+                    </span>
+                  ) : null}
                 </div>
+                <dl className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+                  <div>
+                    <dt className="font-semibold text-foreground">Problem</dt>
+                    <dd className="mt-1 text-muted-foreground">{item.problem}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-foreground">AI used</dt>
+                    <dd className="mt-1 text-muted-foreground">{item.aiUsed}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-foreground">What Katie reviewed / corrected</dt>
+                    <dd className="mt-1 text-muted-foreground">{item.reviewed}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-foreground">Result</dt>
+                    <dd className="mt-1 text-muted-foreground">{item.result}</dd>
+                  </div>
+                </dl>
+                {item.images?.length ? (
+                  <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    {item.images.map((img) => (
+                      <figure
+                        key={img.src}
+                        className="overflow-hidden rounded-xl border border-border bg-white dark:bg-background"
+                      >
+                        <Image
+                          src={img.src}
+                          alt={img.alt}
+                          width={600}
+                          height={360}
+                          className="h-auto w-full object-cover"
+                        />
+                        <figcaption className="px-3 py-2 text-xs text-muted-foreground">
+                          {img.alt}
+                        </figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                ) : null}
               </li>
             </FadeIn>
           ))}
@@ -240,8 +337,8 @@ export function StatusBar() {
         <div className="flex max-w-md items-start gap-3">
           <Briefcase className="mt-0.5 h-5 w-5 text-teal-glow" aria-hidden />
           <p className="text-sm leading-relaxed text-white/80">
-            Actively exploring AI-augmented QA, operations, and communications roles — where human
-            review is valued as much as model fluency.
+            Available for remote part-time and contract work in AI QA, LLM evaluation, and
+            AI-assisted operations — where human review is the product.
           </p>
         </div>
         <ul className="grid grid-cols-2 gap-6 sm:grid-cols-4">

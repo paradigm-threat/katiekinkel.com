@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:resume": "node scripts/generate-resume.mjs"
+    "generate:resume": "node scripts/generate-resume.mjs",
+    "generate:ai-resume": "node scripts/generate-ai-qa-resume.mjs"
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.13.0",

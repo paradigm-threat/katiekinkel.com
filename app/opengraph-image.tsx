@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 import { readFile } from 'fs/promises'
 import path from 'path'
 
-export const alt = 'Katie Kinkel — AI drafts, human QA, better UX'
+export const alt = 'Katie Kinkel — AI QA & LLM Evaluation'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -29,14 +29,17 @@ export default async function OpenGraphImage() {
         }}
       >
         <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 680 }}>
-          <div style={{ fontSize: 24, letterSpacing: 6, textTransform: 'uppercase', opacity: 0.8 }}>
+          <div style={{ fontSize: 22, letterSpacing: 6, textTransform: 'uppercase', opacity: 0.8 }}>
             katiekinkel.com
           </div>
-          <div style={{ fontSize: 64, fontWeight: 700, marginTop: 18, lineHeight: 1.05 }}>
-            Katie Kinkel
+          <div style={{ fontSize: 52, fontWeight: 700, marginTop: 18, lineHeight: 1.08 }}>
+            Katie Kinkel — AI QA &amp; LLM Evaluation
           </div>
-          <div style={{ fontSize: 30, marginTop: 18, opacity: 0.92, lineHeight: 1.3 }}>
-            AI drafts. Human QA. Better UX.
+          <div style={{ fontSize: 28, marginTop: 20, opacity: 0.92, lineHeight: 1.3 }}>
+            Human judgment for AI output.
+          </div>
+          <div style={{ fontSize: 18, marginTop: 28, opacity: 0.7 }}>
+            Remote · Part-time · Contract
           </div>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}

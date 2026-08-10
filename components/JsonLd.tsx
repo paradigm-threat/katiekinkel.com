@@ -1,5 +1,12 @@
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from '@/lib/seo'
-import { email, linkedinUrl, modelFamilies, surfaces } from '@/lib/content'
+import {
+  email,
+  experience,
+  jobTitle,
+  linkedinUrl,
+  modelFamilies,
+  surfaces,
+} from '@/lib/content'
 
 export function JsonLd() {
   const data = {
@@ -20,26 +27,43 @@ export function JsonLd() {
         name: SITE_NAME,
         url: SITE_URL,
         email,
-        jobTitle: 'AI-fluent QA & operations generalist',
+        jobTitle,
         description: SITE_DESCRIPTION,
         alumniOf: {
           '@type': 'CollegeOrUniversity',
           name: 'The Atlanta Art Institute',
         },
         knowsAbout: [
+          'AI QA',
+          'LLM evaluation',
+          'Human-in-the-loop review',
+          'AI-assisted operations',
           'Quality assurance',
           'Customer support',
-          'Artificial intelligence tools',
           ...surfaces,
           ...modelFamilies,
         ],
-        sameAs: [linkedinUrl, `${SITE_URL}/Katie-Kinkel-Resume.pdf`],
+        sameAs: [linkedinUrl, SITE_URL, `${SITE_URL}/Katie-Kinkel-AI-QA-Resume.pdf`],
+        hasOccupation: {
+          '@type': 'Occupation',
+          name: jobTitle,
+          occupationLocation: {
+            '@type': 'Place',
+            name: 'Remote',
+          },
+        },
+        worksFor: experience.slice(0, 2).map((job) => ({
+          '@type': 'Organization',
+          name: job.company,
+          description: `${job.title} (${job.duration})`,
+        })),
       },
       {
         '@type': 'ProfilePage',
         '@id': `${SITE_URL}/#profilepage`,
         url: SITE_URL,
-        name: SITE_NAME,
+        name: `${SITE_NAME} — ${jobTitle}`,
+        description: SITE_DESCRIPTION,
         mainEntity: { '@id': `${SITE_URL}/#person` },
       },
     ],

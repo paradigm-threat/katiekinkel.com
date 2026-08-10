@@ -4,11 +4,11 @@ import { PrintButton } from './PrintButton'
 import { ThemeSwitch } from './ThemeSwitch'
 
 const links = [
-  { href: '#ai', label: 'AI work' },
-  { href: '#models', label: 'Skills' },
+  { href: '#evaluation', label: 'Evaluation' },
   { href: '#proof', label: 'Projects' },
+  { href: '#models', label: 'Skills' },
   { href: '#kk-resume', label: 'Resume' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#hire', label: 'Hire' },
 ] as const
 
 export function SiteHeader() {
@@ -37,10 +37,10 @@ export function SiteHeader() {
             href={linkedinUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Katie Kinkel on LinkedIn"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground transition hover:bg-secondary outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/15 dark:hover:bg-white/10"
+            className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-semibold text-foreground transition hover:bg-secondary outline-none focus-visible:ring-2 focus-visible:ring-primary dark:border-white/15 dark:hover:bg-white/10"
           >
-            <Linkedin className="h-4 w-4" aria-hidden />
+            <Linkedin className="h-4 w-4 text-[#0A66C2]" aria-hidden />
+            LinkedIn
           </a>
           <PrintButton />
           <ThemeSwitch />

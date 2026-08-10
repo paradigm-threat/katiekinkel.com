@@ -85,7 +85,7 @@ const experienceItem = ({ title, company, location, duration, description }) => 
 const doc = new Document({
   creator: 'Katie Kinkel',
   title: 'Katie Kinkel – Resume',
-  description: 'AI-fluent QA & operations generalist',
+  description: 'AI QA, Evaluation & Operations Specialist',
   styles: {
     default: {
       document: {
@@ -108,7 +108,7 @@ const doc = new Document({
           spacing: { before: 0, after: 80 },
           children: [
             new TextRun({
-              text: 'AI-fluent QA & operations generalist',
+              text: 'AI QA, Evaluation & Operations Specialist',
               size: 24,
               color: MUTED,
             }),
@@ -120,13 +120,15 @@ const doc = new Document({
             link('katiekinkel.com', 'https://katiekinkel.com'),
             muted('   ·   '),
             link('ktkinkel@gmail.com', 'mailto:ktkinkel@gmail.com'),
+            muted('   ·   '),
+            link('LinkedIn', 'https://www.linkedin.com/in/katie-k-92602250/'),
           ],
         }),
         new Paragraph({
           spacing: { before: 0, after: 160 },
           children: [
             new TextRun({
-              text: 'Personable, motivated problem-solver who resolves issues with grace. After Spotify Creative Support and QA Buddy work, deepened fluency with AI tools for virtually every organizational skill companies need — always with a human QA pass before anything ships.',
+              text: 'AI QA, Evaluation & Operations Specialist with 3+ years of Spotify support QA via 24-7 Intouch. Evaluates LLM output for instruction following, accuracy, tone, and hallucinations — then organizes AI-assisted ops work so teams can ship with confidence.',
               size: 19,
               color: MUTED,
               italics: true,
@@ -136,12 +138,12 @@ const doc = new Document({
         hRule(),
         sectionHeading('Experience'),
         ...experienceItem({
-          title: 'AI-augmented generalist',
+          title: 'Independent AI QA & Evaluation Specialist',
           company: 'Independent',
           location: 'Remote / Savannah area',
           duration: '2022 – Present',
           description:
-            'Uses Cursor, GitHub Copilot, and ChatGPT for research, drafting, QA, prototyping, and operations. Builds websites, writes association minutes, supports community and caretaking workflows, and treats human review as the quality gate on every deliverable.',
+            'LLM evaluation, human-in-the-loop review, and AI-assisted operations. Uses Cursor, GitHub Copilot, and ChatGPT for research, drafting, QA, prototyping, and ops — with human review as the quality gate on every deliverable.',
         }),
         ...experienceItem({
           title: 'Creative Support / QA Buddy',
@@ -230,7 +232,7 @@ const doc = new Document({
           spacing: { before: 120, after: 40 },
           children: [
             muted(
-              'Surfaces: Cursor · Copilot · ChatGPT. Families: GPT · Codex · Claude Opus · Claude Sonnet · Claude Fable · Claude Haiku · Gemini · Grok · Composer. Versions rotate; human QA does not.',
+              'Surfaces: Cursor · Copilot · ChatGPT. Families: GPT · Claude · Gemini · Grok · Codex · Composer. Versions rotate; human QA does not.',
             ),
           ],
         }),

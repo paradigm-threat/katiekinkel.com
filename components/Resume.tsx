@@ -4,6 +4,7 @@ import {
   education,
   email,
   experience,
+  jobTitle,
   linkedinUrl,
   modelFamilies,
   objective,
@@ -23,9 +24,7 @@ export function Resume() {
         <h2 id="resume-heading" className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
           Katie Kinkel
         </h2>
-        <p className="mt-1 text-base text-muted-foreground">
-          AI-fluent QA &amp; operations generalist
-        </p>
+        <p className="mt-1 text-base text-muted-foreground">{jobTitle}</p>
         <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
           <a
             className="inline-flex items-center gap-1.5 text-primary underline-offset-2 hover:underline"
@@ -45,10 +44,7 @@ export function Resume() {
             LinkedIn
           </a>
           <span aria-hidden>·</span>
-          <a
-            className="text-primary underline-offset-2 hover:underline"
-            href={siteUrl}
-          >
+          <a className="text-primary underline-offset-2 hover:underline" href={siteUrl}>
             katiekinkel.com
           </a>
         </p>
@@ -66,9 +62,7 @@ export function Resume() {
       </div>
 
       <div className="mt-8">
-        <h3 className="text-xs font-bold tracking-[0.18em] text-primary uppercase">
-          Experience
-        </h3>
+        <h3 className="text-xs font-bold tracking-[0.18em] text-primary uppercase">Experience</h3>
         <ul className="mt-4 space-y-5">
           {experience.map((job) => (
             <li key={`${job.company}-${job.duration}`} className="experience-item break-inside-avoid">
@@ -87,9 +81,7 @@ export function Resume() {
       </div>
 
       <div className="mt-8 education-item break-inside-avoid">
-        <h3 className="text-xs font-bold tracking-[0.18em] text-primary uppercase">
-          Education
-        </h3>
+        <h3 className="text-xs font-bold tracking-[0.18em] text-primary uppercase">Education</h3>
         <ul className="mt-4 space-y-3">
           {education.map((ed) => (
             <li key={ed.school}>
@@ -104,9 +96,7 @@ export function Resume() {
       </div>
 
       <div className="mt-8 break-inside-avoid">
-        <h3 className="text-xs font-bold tracking-[0.18em] text-primary uppercase">
-          Also
-        </h3>
+        <h3 className="text-xs font-bold tracking-[0.18em] text-primary uppercase">Also</h3>
         <ul className="mt-4 space-y-3">
           {also.map((item) => (
             <li key={item.title} className="text-sm">
@@ -125,8 +115,8 @@ export function Resume() {
           Tools &amp; models
         </h3>
         <p className="mt-3 text-sm text-muted-foreground">
-          Surfaces: {surfaces.join(' · ')}. Families: {modelFamilies.join(' · ')}.
-          Versions rotate; human QA does not.
+          Surfaces: {surfaces.join(' · ')}. Families: {modelFamilies.join(' · ')}. Versions rotate;
+          human QA does not.
         </p>
       </div>
     </section>
