@@ -20,6 +20,7 @@ export function JsonLd() {
         description: SITE_DESCRIPTION,
         inLanguage: 'en-US',
         publisher: { '@id': `${SITE_URL}/#person` },
+        image: `${SITE_URL}/icons/icon-512.png`,
       },
       {
         '@type': 'Person',
@@ -29,6 +30,10 @@ export function JsonLd() {
         email,
         jobTitle,
         description: SITE_DESCRIPTION,
+        image: [
+          `${SITE_URL}/assets/katie-professional-cartoon-portrait-square.png`,
+          `${SITE_URL}/icons/icon-512.png`,
+        ],
         alumniOf: {
           '@type': 'CollegeOrUniversity',
           name: 'The Atlanta Art Institute',

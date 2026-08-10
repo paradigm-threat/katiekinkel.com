@@ -9,6 +9,7 @@ Personal site for **Katie Kinkel** — AI QA, evaluation & operations specialist
 - Next.js (App Router) + TypeScript + Tailwind CSS v4
 - `next-themes` (light / dark / system)
 - Vercel deploy · domain `katiekinkel.com`
+- Brand mark: `KK` monogram (`app/icon.png`, `app/favicon.ico`, `public/icons/*`) — rebuild with `python scripts/build-icons.py`
 
 ## Scripts
 
