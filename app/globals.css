@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), ui-serif, Georgia, serif;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  :root {
+    /* Teal brand evolved from #5B8E7D */
+    --background: 160 28% 97%;
+    --foreground: 168 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 168 30% 12%;
+    --primary: 162 32% 36%;
+    --primary-foreground: 160 40% 98%;
+    --secondary: 158 22% 92%;
+    --secondary-foreground: 168 28% 18%;
+    --muted: 158 18% 93%;
+    --muted-foreground: 168 12% 38%;
+    --accent: 168 35% 90%;
+    --accent-foreground: 168 30% 16%;
+    --border: 160 16% 84%;
+    --input: 160 16% 84%;
+    --ring: 162 32% 36%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 170 28% 7%;
+    --foreground: 160 20% 96%;
+    --card: 170 24% 10%;
+    --card-foreground: 160 20% 96%;
+    --primary: 158 38% 52%;
+    --primary-foreground: 170 30% 8%;
+    --secondary: 170 18% 16%;
+    --secondary-foreground: 160 18% 92%;
+    --muted: 170 16% 15%;
+    --muted-foreground: 160 12% 68%;
+    --accent: 168 22% 18%;
+    --accent-foreground: 160 20% 96%;
+    --border: 170 14% 20%;
+    --input: 170 14% 20%;
+    --ring: 158 38% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .hero-glow {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 20%, hsl(162 40% 45% / 0.22), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, hsl(190 45% 45% / 0.16), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, hsl(150 30% 40% / 0.12), transparent 45%);
+  }
+
+  .dark .hero-glow {
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 20%, hsl(158 45% 40% / 0.28), transparent 55%),
+      radial-gradient(ellipse 70% 50% at 85% 15%, hsl(190 50% 35% / 0.2), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 50% 100%, hsl(150 35% 30% / 0.18), transparent 45%);
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.7s ease-out both;
+  }
+
+  .animate-fade-up-delay {
+    animation: fade-up 0.7s ease-out 0.12s both;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.7s ease-out 0.24s both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-fade-up,
+    .animate-fade-up-delay,
+    .animate-fade-up-delay-2 {
+      animation: none;
+    }
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .web-only {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page-content {
+    display: block !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .resume-section {
+    display: block !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .resume-section,
+  .experience-item,
+  .education-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  h1, h2, h3, h4, h5, h6, p, li, a, span, strong, em {
+    color: #111 !important;
+  }
+
+  .text-primary,
+  a {
+    color: #0f3d32 !important;
+  }
+
+  a {
+    text-decoration: none !important;
+  }
+
+  a::after {
+    content: none !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
