@@ -1,10 +1,19 @@
 import { ImageResponse } from 'next/og'
+import { readFile } from 'fs/promises'
+import path from 'path'
 
-export const alt = 'Katie Kinkel — AI-fluent QA & operations generalist'
+export const alt = 'Katie Kinkel — Turning AI into real-world impact'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const portraitPath = path.join(
+    process.cwd(),
+    'public/assets/katie-professional-cartoon-portrait-square.png',
+  )
+  const portraitData = await readFile(portraitPath)
+  const portraitSrc = `data:image/png;base64,${portraitData.toString('base64')}`
+
   return new ImageResponse(
     (
       <div
@@ -12,22 +21,32 @@ export default function OpenGraphImage() {
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          padding: 72,
-          background: 'linear-gradient(135deg, #0f3d32 0%, #1a6b58 45%, #3d9b82 100%)',
-          color: '#f4faf7',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: 64,
+          background: 'linear-gradient(135deg, #0b1220 0%, #1a1440 45%, #0f3d3a 100%)',
+          color: '#f8fafc',
         }}
       >
-        <div style={{ fontSize: 28, letterSpacing: 6, textTransform: 'uppercase', opacity: 0.85 }}>
-          katiekinkel.com
+        <div style={{ display: 'flex', flexDirection: 'column', maxWidth: 680 }}>
+          <div style={{ fontSize: 24, letterSpacing: 6, textTransform: 'uppercase', opacity: 0.8 }}>
+            katiekinkel.com
+          </div>
+          <div style={{ fontSize: 64, fontWeight: 700, marginTop: 18, lineHeight: 1.05 }}>
+            Katie Kinkel
+          </div>
+          <div style={{ fontSize: 30, marginTop: 18, opacity: 0.92, lineHeight: 1.3 }}>
+            Turning AI into real-world impact — with human QA that ships.
+          </div>
         </div>
-        <div style={{ fontSize: 72, fontWeight: 700, marginTop: 24, lineHeight: 1.05 }}>
-          Katie Kinkel
-        </div>
-        <div style={{ fontSize: 34, marginTop: 20, maxWidth: 900, opacity: 0.92, lineHeight: 1.3 }}>
-          AI for every job companies need — with human QA that actually ships.
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={portraitSrc}
+          width={280}
+          height={280}
+          alt=""
+          style={{ borderRadius: 999, boxShadow: '0 20px 60px rgba(0,0,0,0.35)' }}
+        />
       </div>
     ),
     { ...size },

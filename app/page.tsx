@@ -4,8 +4,9 @@ import {
   Proof,
   SkillsTools,
   StatusBar,
-  Strengths,
+  ValueCards,
   WhatIBring,
+  Workflow,
 } from '@/components/Marketing'
 import { Resume } from '@/components/Resume'
 import { email } from '@/lib/content'
@@ -16,8 +17,9 @@ export default function HomePage() {
       <SiteHeader />
       <main>
         <Hero />
-        <Strengths />
+        <ValueCards />
         <SkillsTools />
+        <Workflow />
         <WhatIBring />
         <Proof />
 
@@ -31,7 +33,10 @@ export default function HomePage() {
           aria-labelledby="contact-heading"
         >
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-            <h2 id="contact-heading" className="font-display text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2
+              id="contact-heading"
+              className="font-display text-3xl font-bold tracking-tight sm:text-4xl"
+            >
               Say hello
             </h2>
             <p className="mt-4 max-w-xl text-lg text-muted-foreground">
@@ -40,7 +45,7 @@ export default function HomePage() {
             </p>
             <a
               href={`mailto:${email}`}
-              className="btn-gradient mt-8 inline-flex items-center rounded-lg px-6 py-3.5 text-base font-bold text-white shadow-md transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              className="btn-gradient mt-8 inline-flex items-center rounded-xl px-6 py-3.5 text-base font-bold text-white shadow-md transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               {email}
             </a>

@@ -22,27 +22,37 @@ export const focusItems = [
   { title: 'Prototypes & proofreading', icon: 'layout' as const },
 ] as const
 
-export const strengths = [
+/** Illustrated value cards — use assets in /public/assets */
+export const valueCards = [
   {
     title: 'Problem Solver',
-    body: 'Turns messy requests into clear steps — then verifies the result before anyone depends on it.',
-    icon: 'target' as const,
+    body: 'I break down messy requests into clear steps — then verify the result before anyone depends on it.',
+    image: '/assets/icon-problem-solver.png',
   },
   {
     title: 'Builder',
-    body: 'Spins up website prototypes, docs, and process sketches so stakeholders can react to something real.',
-    icon: 'code' as const,
+    body: 'I spin up website prototypes, docs, and process sketches so stakeholders can react to something real.',
+    image: '/assets/icon-builder.png',
   },
   {
     title: 'QA Driven',
     body: 'Spotify QA Buddy instincts: every AI draft gets a human pass. Judgment is the product.',
-    icon: 'chart' as const,
+    image: '/assets/icon-data-driven.png',
   },
   {
     title: 'Collaborative',
-    body: 'Neighborhood minutes, rescue ops, support hubs — clear communication that keeps people moving together.',
-    icon: 'users' as const,
+    body: 'I thrive across support hubs, neighborhood minutes, and rescue ops — clear communication everyone can follow.',
+    image: '/assets/icon-collaboration.png',
   },
+] as const
+
+export const techFocus = [
+  { label: 'LLM applications', icon: 'bot' as const },
+  { label: 'Human QA & review', icon: 'shield' as const },
+  { label: 'Ops & organization', icon: 'folders' as const },
+  { label: 'Prototyping', icon: 'layout' as const },
+  { label: 'Research & drafting', icon: 'search' as const },
+  { label: 'Stakeholder comms', icon: 'message' as const },
 ] as const
 
 export const skillTags = [
@@ -214,3 +224,6 @@ export const summary =
 
 export const objective =
   'I strive for excellence, appreciate context, and want to share a positive experience with my team — now amplified by AI, grounded by review.'
+
+export const missionQuote =
+  'I use AI to solve meaningful problems and create solutions that make a real-world difference — with a human review pass on every deliverable.'

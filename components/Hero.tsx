@@ -6,22 +6,22 @@ import { focusItems } from '@/lib/content'
 
 export function Hero() {
   return (
-    <section className="no-print web-only relative isolate min-h-[min(94dvh,920px)] overflow-hidden bg-navy text-white">
+    <section className="no-print web-only relative isolate min-h-[min(92dvh,900px)] overflow-hidden bg-navy text-white">
       <Image
-        src="/hero-bg.jpg"
+        src="/assets/ai-network-background.png"
         alt=""
         fill
         priority
         sizes="100vw"
-        className="object-cover object-[70%_center] opacity-55"
+        className="object-cover object-right opacity-40"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/85 to-navy/35" />
-      <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-navy/50" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/55" />
+      <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent to-navy/40" />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:py-28">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:py-24">
         <div>
           <FadeIn>
-            <p className="text-xs font-semibold tracking-[0.28em] text-white/70 uppercase">
+            <p className="text-xs font-semibold tracking-[0.28em] text-white/65 uppercase">
               Katie Kinkel
             </p>
           </FadeIn>
@@ -32,9 +32,9 @@ export function Hero() {
           </FadeIn>
           <FadeIn delay={0.16}>
             <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-              Ex-Spotify Creative Support &amp; QA Buddy. Passionate about using Cursor, Copilot,
-              and ChatGPT to organize, research, prototype, and ship — with human review on every
-              deliverable.
+              Ex-Spotify Creative Support &amp; QA Buddy with a passion for solving messy problems,
+              building with Cursor / Copilot / ChatGPT, and shipping outcomes that hold up under
+              human review.
             </p>
           </FadeIn>
           <FadeIn delay={0.24}>
@@ -42,7 +42,7 @@ export function Hero() {
               <a
                 href="/Katie-Kinkel-Resume.pdf"
                 download
-                className="btn-gradient inline-flex items-center gap-2 rounded-lg px-5 py-3 text-sm font-bold tracking-wide text-white shadow-lg shadow-violet-500/20 transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
+                className="btn-gradient inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold tracking-wide text-white shadow-lg shadow-violet-500/25 transition hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-teal-glow"
               >
                 <Download className="h-4 w-4" aria-hidden />
                 View resume
@@ -56,22 +56,36 @@ export function Hero() {
               </a>
             </div>
           </FadeIn>
-        </div>
 
-        <FadeIn delay={0.2} className="lg:justify-self-end">
-          <aside className="w-full max-w-sm rounded-2xl border border-white/10 bg-navy-card/80 p-5 shadow-2xl backdrop-blur-md">
-            <p className="text-sm font-semibold text-white/90">Current focus:</p>
-            <ul className="mt-4 space-y-3">
+          <FadeIn delay={0.3}>
+            <ul className="mt-10 grid gap-3 sm:grid-cols-2">
               {focusItems.map((item) => (
-                <li key={item.title} className="flex items-center gap-3 text-sm text-white/80">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-teal-glow/30 bg-teal-glow/10">
+                <li
+                  key={item.title}
+                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-3 py-2.5 text-sm text-white/80 backdrop-blur-sm"
+                >
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-glow/15">
                     <IconBadge name={item.icon} className="icon-glow h-4 w-4" />
                   </span>
                   {item.title}
                 </li>
               ))}
             </ul>
-          </aside>
+          </FadeIn>
+        </div>
+
+        <FadeIn delay={0.18} className="flex justify-center lg:justify-end">
+          <div className="relative">
+            <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-violet-glow/40 via-sky-400/20 to-teal-glow/40 blur-2xl" />
+            <Image
+              src="/assets/katie-professional-cartoon-portrait.png"
+              alt="Illustrated portrait of Katie Kinkel"
+              width={420}
+              height={420}
+              priority
+              className="relative h-auto w-[min(100%,420px)] drop-shadow-2xl"
+            />
+          </div>
         </FadeIn>
       </div>
     </section>
