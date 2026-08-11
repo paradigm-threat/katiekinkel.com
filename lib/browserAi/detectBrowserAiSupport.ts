@@ -1,19 +1,23 @@
 import { isWebMcpEnabled } from '@/lib/features'
 import { isMobileClient, TimeoutError, withTimeout } from '@/lib/browserAi/utils'
-import { getModelContext } from '@/lib/webmcp/modelContext'
 
 export type BrowserAiUnsupportedReason = 'mobile' | 'no-prompt-api' | 'model-unavailable'
 
 export type BrowserAiSetupReason =
   | 'feature-disabled'
-  | 'webmcp-unavailable'
   | 'detection-timeout'
   | 'model-downloadable'
 
 export type BrowserAiSupport =
   | { status: 'unsupported'; reason: BrowserAiUnsupportedReason }
   | { status: 'needs-setup'; reason: BrowserAiSetupReason; modelStatus?: string }
-  | { status: 'ready'; modelStatus: string; nativeWebMcp: boolean }
+  | {
+      status: 'ready'
+      modelStatus: string
+      nativeWebMcp: boolean
+      /** True when @mcp-b/webmcp-polyfill provided modelContext */
+      usedPolyfill: boolean
+    }
 
 const DETECTION_TIMEOUT_MS = 12_000
 
@@ -51,23 +55,26 @@ async function detectInner(): Promise<BrowserAiSupport> {
     return { status: 'unsupported', reason: 'model-unavailable' }
   }
 
+  // Install WebMCP polyfill when native modelContext is missing (common on
+  // Prompt-API Chrome builds that do not yet enable WebMCP).
   const { initWebMcp } = await import('@/lib/webmcp/init')
-  await initWebMcp()
-
-  const ctx = getModelContext()
-  if (!ctx) {
-    return { status: 'needs-setup', reason: 'webmcp-unavailable', modelStatus }
-  }
+  const webmcp = await initWebMcp()
 
   if (modelStatus === 'downloadable' || modelStatus === 'downloading') {
-    return { status: 'needs-setup', reason: 'model-downloadable', modelStatus }
+    return {
+      status: 'needs-setup',
+      reason: 'model-downloadable',
+      modelStatus,
+    }
   }
 
-  const { nativeWebMcpAvailableAtLoad } = await import('@/lib/webmcp/nativeAtLoad')
+  // In-page agent uses the tool bridge + Prompt API; polyfill is best-effort
+  // for registerTool / inspector — do not block the demo if it fails.
   return {
     status: 'ready',
     modelStatus,
-    nativeWebMcp: nativeWebMcpAvailableAtLoad(),
+    nativeWebMcp: webmcp.nativeAtLoad,
+    usedPolyfill: webmcp.usedPolyfill,
   }
 }
 

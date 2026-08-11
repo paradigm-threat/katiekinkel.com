@@ -50,14 +50,17 @@ export function BrowserAiDemo() {
   const statusLabel = useMemo(() => {
     if (support.status === 'checking') return 'Checking browser AI…'
     if (support.status === 'ready') {
-      return support.nativeWebMcp
-        ? `Ready · on-device model · native WebMCP`
-        : `Ready · on-device model · tools via page bridge`
+      if (support.nativeWebMcp) {
+        return 'Ready · on-device model · native WebMCP'
+      }
+      if (support.usedPolyfill) {
+        return 'Ready · on-device model · WebMCP polyfill (in-page tools)'
+      }
+      return 'Ready · on-device model · page tool bridge'
     }
     if (support.status === 'needs-setup') {
       if (support.reason === 'model-downloadable') return 'Model downloadable — open chat to install'
       if (support.reason === 'feature-disabled') return 'Demo flag off'
-      if (support.reason === 'webmcp-unavailable') return 'WebMCP context unavailable'
       return 'Needs setup'
     }
     if (support.reason === 'mobile') return 'Desktop Chrome required'

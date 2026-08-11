@@ -111,7 +111,7 @@ export function getFactSheet(): FactSheet {
         'Chrome Prompt API / on-device Gemini Nano',
       ],
       orderedBy:
-        'This site and agent were ordered into existence through LLM agents with knowledge of the stack — demonstrating modern in-browser AI and human QA judgment as Katie’s hire proposition.',
+        'This site and agent were ordered into existence through LLM agents with knowledge of the stack — demonstrating modern in-browser AI and human QA judgment as Katie’s hire proposition. When the browser has the Prompt API but not native WebMCP, we load the @mcp-b/webmcp-polyfill so tools still register for the in-page demo.',
     },
   }
 }
