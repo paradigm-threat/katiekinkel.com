@@ -18,6 +18,13 @@ import { clsx } from 'clsx'
 
 type ChatMessage = { role: 'user' | 'assistant' | 'system'; content: string }
 
+const STARTER_PROMPTS = [
+  'What kind of work history does she have?',
+  'What’s under the hood of this site?',
+  'What’s her Spotify QA proof?',
+  'Give me a short hire pitch.',
+] as const
+
 function appendMessages(prev: ChatMessage[], next: ChatMessage | ChatMessage[]): ChatMessage[] {
   const added = Array.isArray(next) ? next : [next]
   const merged = [...prev, ...added]
@@ -128,8 +135,8 @@ export function BrowserAiDemo() {
     setProgress(null)
   }
 
-  async function send() {
-    const text = clampString(input.trim(), MAX_USER_MESSAGE_CHARS)
+  async function send(raw?: string) {
+    const text = clampString((raw ?? input).trim(), MAX_USER_MESSAGE_CHARS)
     if (!text || busy) return
     setInput('')
     setMessages((m) => appendMessages(m, { role: 'user', content: text }))
@@ -273,6 +280,21 @@ export function BrowserAiDemo() {
                   <Loader2 className="h-3.5 w-3.5 animate-spin" />
                   {progress}
                 </p>
+              ) : null}
+              {!busy && messages.every((m) => m.role === 'system') ? (
+                <ul className="flex flex-wrap gap-2 pt-1">
+                  {STARTER_PROMPTS.map((prompt) => (
+                    <li key={prompt}>
+                      <button
+                        type="button"
+                        onClick={() => void send(prompt)}
+                        className="rounded-full border border-border bg-secondary/60 px-3 py-1.5 text-left text-xs font-medium text-foreground transition hover:bg-secondary"
+                      >
+                        {prompt}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               ) : null}
             </div>
 

@@ -13,6 +13,8 @@ import {
   modelFamilies,
   objective,
   reliabilityRefrain,
+  siteStack,
+  siteStackQuip,
   siteUrl,
   spotifyProofLine,
   summary,
@@ -21,7 +23,7 @@ import {
 } from '@/lib/content'
 
 export const DEMO_CONFESSION =
-  'I’m a browser demo of WebMCP + on-device Gemini, built with LLM agents against this Next.js portfolio. I answer from structured site/resume facts via MCP tools — I don’t invent Katie’s work history. If something isn’t in the fact sheet, I’ll say so.'
+  'I’m a browser demo of WebMCP + on-device Gemini on this Next.js portfolio — ordered up with LLM agents that know the stack. Katie knows what’s under the hood of the car she’s driving; she doesn’t have to forge every piston. I answer from structured site/resume facts via MCP tools — I don’t invent her work history.'
 
 export type FactSheet = {
   name: string
@@ -39,6 +41,8 @@ export type FactSheet = {
   modelFamilies: readonly string[]
   capabilities: { title: string; body: string }[]
   techFocus: { label: string }[]
+  siteStack: string[]
+  siteStackQuip: string
   experience: {
     title: string
     company: string
@@ -83,6 +87,8 @@ export function getFactSheet(): FactSheet {
     modelFamilies: [...modelFamilies],
     capabilities: capabilities.map((c) => ({ title: c.title, body: c.body })),
     techFocus: techFocus.map((t) => ({ label: t.label })),
+    siteStack: [...siteStack],
+    siteStackQuip,
     experience: experience.map((j) => ({ ...j })),
     education: education.map((e) => ({ ...e })),
     also: also.map((a) => ({ ...a })),
@@ -102,16 +108,9 @@ export function getFactSheet(): FactSheet {
     ],
     demo: {
       confession: DEMO_CONFESSION,
-      stack: [
-        'Next.js App Router',
-        'TypeScript',
-        'Tailwind CSS',
-        'Vercel',
-        'WebMCP (document.modelContext)',
-        'Chrome Prompt API / on-device Gemini Nano',
-      ],
+      stack: [...siteStack],
       orderedBy:
-        'This site and agent were ordered into existence through LLM agents with knowledge of the stack — demonstrating modern in-browser AI and human QA judgment as Katie’s hire proposition. When the browser has the Prompt API but not native WebMCP, we load the @mcp-b/webmcp-polyfill so tools still register for the in-page demo.',
+        'This site and agent were ordered into existence through LLM agents with knowledge of the stack — demonstrating modern in-browser AI and human QA judgment as Katie’s hire proposition. Stack literacy ≠ solo engineering: Katie can name the parts under the hood. When the browser has the Prompt API but not native WebMCP, we load the @mcp-b/webmcp-polyfill so tools still register for the in-page demo.',
     },
   }
 }
@@ -134,6 +133,9 @@ export function searchFacts(query: string): { matches: string[]; query: string }
     ...sheet.education.map((e) => `${e.school} ${e.degree} ${e.duration}`),
     ...sheet.also.map((a) => `${a.title} ${a.duration} ${a.description}`),
     ...sheet.capabilities.map((c) => `${c.title} ${c.body}`),
+    sheet.siteStackQuip,
+    ...sheet.siteStack,
+    ...sheet.demo.stack,
     ...sheet.caseStudies.map(
       (c) => `${c.title} ${c.problem} ${c.aiUsed} ${c.reviewed} ${c.result}`,
     ),

@@ -61,7 +61,7 @@ const TOOLS: AnyTool[] = [
     properties: {},
   }, () => executeGetEducation()),
 
-  wrap('get_skills_and_tools', 'Surfaces, model families, capabilities, tech focus.', {
+  wrap('get_skills_and_tools', 'Surfaces, model families, capabilities, tech focus, site stack.', {
     type: 'object',
     properties: {},
   }, () => executeGetSkillsAndTools()),
@@ -112,7 +112,7 @@ const TOOLS: AnyTool[] = [
     properties: {
       section: {
         type: 'string',
-        enum: ['evaluation', 'proof', 'hire', 'models', 'ai', 'top'],
+        enum: ['evaluation', 'proof', 'hire', 'models', 'ai', 'top', 'stack'],
       },
       id: { type: 'string' },
     },

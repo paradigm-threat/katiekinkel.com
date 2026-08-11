@@ -52,6 +52,8 @@ export function executeGetSkillsAndTools() {
     modelFamilies: s.modelFamilies,
     capabilities: s.capabilities,
     techFocus: s.techFocus,
+    siteStack: s.siteStack,
+    siteStackQuip: s.siteStackQuip,
   })
 }
 
@@ -119,7 +121,7 @@ export function executeNavigateToSection(args: Record<string, unknown>) {
     .trim()
     .replace(/^#/, '')
     .toLowerCase()
-  const allowed = ['evaluation', 'proof', 'hire', 'models', 'ai', 'top']
+  const allowed = ['evaluation', 'proof', 'hire', 'models', 'ai', 'top', 'stack']
   if (!allowed.includes(section)) {
     return toolErrorResult(`section must be one of: ${allowed.join(', ')}`)
   }

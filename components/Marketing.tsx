@@ -11,6 +11,8 @@ import {
   highlights,
   linkedinUrl,
   missionQuote,
+  siteStack,
+  siteStackQuip,
   skillTags,
   surfaces,
   techFocus,
@@ -120,7 +122,8 @@ export function SkillsTools() {
               <p className="mt-3 max-w-xl text-muted-foreground">
                 Skill-first: evaluation, judgment, QA, research, operations, and communication.
                 Surfaces Katie works in daily: {surfaces.join(' · ')}. Model families stay
-                unversioned because tools rotate; QA judgment does not.
+                unversioned because tools rotate; QA judgment does not. Below: the stack this site
+                runs on — literacy for the car she&apos;s driving, not a solo-engineer claim.
               </p>
             </FadeIn>
 
@@ -179,6 +182,31 @@ export function SkillsTools() {
             </aside>
           </FadeIn>
         </div>
+
+        <FadeIn delay={0.14}>
+          <div
+            id="stack"
+            className="mt-12 scroll-mt-24 rounded-3xl border border-border bg-card p-6 shadow-sm sm:p-8"
+          >
+            <p className="text-xs font-bold tracking-[0.2em] text-foreground uppercase">
+              Under the hood · this site
+            </p>
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              {siteStackQuip} Naming the pieces is stack literacy for AI QA — not a claim that Katie
+              engineers the chassis alone.
+            </p>
+            <ul className="mt-5 flex flex-wrap gap-2">
+              {siteStack.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-full border border-border bg-secondary/70 px-3.5 py-1.5 text-sm font-medium text-foreground"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FadeIn>
       </div>
     </section>
   )
