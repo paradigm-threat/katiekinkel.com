@@ -3,6 +3,11 @@ import {
   type LanguageModelMessage,
 } from '@/lib/browserAi/browserLanguageModel'
 import {
+  clampString,
+  MAX_AGENT_TURNS,
+  MAX_USER_MESSAGE_CHARS,
+} from '@/lib/siteAi/limits'
+import {
   executeSiteAiTool,
   parseToolCall,
   stripToolMarkers,
@@ -19,8 +24,6 @@ export type RunAgentResult = {
   turns: number
 }
 
-const DEFAULT_MAX_TURNS = 8
-
 export async function runBrowserAgent(input: {
   systemPrompt: string
   userMessage: string
@@ -29,7 +32,15 @@ export async function runBrowserAgent(input: {
   signal?: AbortSignal
   onProgress?: (event: AgentProgress) => void
 }): Promise<RunAgentResult> {
-  const maxTurns = input.maxTurns ?? DEFAULT_MAX_TURNS
+  const maxTurns = Math.min(input.maxTurns ?? MAX_AGENT_TURNS, MAX_AGENT_TURNS)
+  const userMessage = clampString(input.userMessage.trim(), MAX_USER_MESSAGE_CHARS)
+  if (!userMessage) {
+    return { finalText: 'Please enter a question.', toolCalls: [], turns: 0 }
+  }
+  if (input.signal?.aborted) {
+    throw new DOMException('Aborted', 'AbortError')
+  }
+
   const session = await createBrowserLanguageModelSession(input.systemPrompt, {
     signal: input.signal,
     onSessionProgress: (p) => {
@@ -44,13 +55,21 @@ export async function runBrowserAgent(input: {
   })
 
   const toolCalls: RunAgentResult['toolCalls'] = []
+  const history = (input.history ?? []).slice(-12).map((m) => ({
+    role: m.role,
+    content: clampString(m.content, MAX_USER_MESSAGE_CHARS),
+  }))
   const conversation: LanguageModelMessage[] = [
-    ...(input.history ?? []),
-    { role: 'user', content: input.userMessage },
+    ...history,
+    { role: 'user', content: userMessage },
   ]
 
   try {
     for (let turn = 0; turn < maxTurns; turn++) {
+      if (input.signal?.aborted) {
+        throw new DOMException('Aborted', 'AbortError')
+      }
+
       input.onProgress?.({
         phase: 'thinking',
         turn: turn + 1,
@@ -65,7 +84,7 @@ export async function runBrowserAgent(input: {
         input.onProgress?.({ phase: 'tool', toolName: toolCall.name, status: 'start' })
         const toolResult = await executeSiteAiTool(toolCall.name, toolCall.arguments)
         input.onProgress?.({ phase: 'tool', toolName: toolCall.name, status: 'done' })
-        conversation.push({ role: 'assistant', content: response })
+        conversation.push({ role: 'assistant', content: clampString(response, MAX_USER_MESSAGE_CHARS) })
         conversation.push({
           role: 'user',
           content: `Tool result for ${toolCall.name}:\n${toolResult}\n\nContinue or write the final answer as plain prose (no tool markers).`,
@@ -75,13 +94,18 @@ export async function runBrowserAgent(input: {
 
       const finalText = stripToolMarkers(response)
       if (finalText.length >= 8) {
-        return { finalText, toolCalls, turns: turn + 1 }
+        return {
+          finalText: clampString(finalText, MAX_USER_MESSAGE_CHARS),
+          toolCalls,
+          turns: turn + 1,
+        }
       }
 
-      conversation.push({ role: 'assistant', content: response })
+      conversation.push({ role: 'assistant', content: clampString(response, MAX_USER_MESSAGE_CHARS) })
       conversation.push({
         role: 'user',
-        content: 'Please give a short final answer in plain prose, or call a tool if you still need facts.',
+        content:
+          'Please give a short final answer in plain prose, or call a tool if you still need facts.',
       })
     }
 
@@ -91,6 +115,10 @@ export async function runBrowserAgent(input: {
       turns: maxTurns,
     }
   } finally {
-    session.destroy()
+    try {
+      session.destroy()
+    } catch {
+      // ignore
+    }
   }
 }

@@ -54,3 +54,13 @@ Optional: Chrome Canary + `chrome://flags/#enable-webmcp-testing`, Model Context
 ## Origin trial
 
 Register WebMCP OT for `https://katiekinkel.com` (Chrome 149+) and set `NEXT_PUBLIC_WEBMCP_ORIGIN_TRIAL_TOKEN` on Vercel.
+
+## Hardening (client demo)
+
+- **No server LLM** — Prompt API + local fact sheet only; tools cannot invent bio facts outside handlers.
+- **Allowlisted tools** — `parseToolCall` / `executeSiteAiTool` reject unknown names; args sanitized to primitives with length clamps (`lib/siteAi/limits.ts`).
+- **Abort** — Escape / backdrop / Stop abort the in-flight session; agent checks `signal` between turns.
+- **Polyfill failures** — `initWebMcp` try/catch; demo stays usable via tool bridge.
+- **Detection failures** — never leave the UI stuck on “checking”.
+- **Headers** — `Permissions-Policy: tools=(self)`, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options` in `next.config.ts`.
+- **Chat render** — plain text nodes only (no `dangerouslySetInnerHTML`).

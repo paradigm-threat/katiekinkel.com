@@ -85,7 +85,8 @@ export async function detectBrowserAiSupport(): Promise<BrowserAiSupport> {
     if (e instanceof TimeoutError) {
       return { status: 'needs-setup', reason: 'detection-timeout' }
     }
-    throw e
+    console.warn('[Browser AI] detection failed', e)
+    return { status: 'unsupported', reason: 'model-unavailable' }
   }
 }
 

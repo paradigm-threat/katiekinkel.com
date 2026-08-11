@@ -151,7 +151,11 @@ export function registerAllWebMcpTools(): void {
   const ctx = getModelContext()
   if (!ctx) return
   for (const tool of TOOLS) {
-    ctx.registerTool(tool as ToolDescriptor & { inputSchema: InputSchema })
+    try {
+      ctx.registerTool(tool as ToolDescriptor & { inputSchema: InputSchema })
+    } catch (e) {
+      console.warn(`[WebMCP] failed to register ${tool.name}`, e)
+    }
   }
   registered = true
 }

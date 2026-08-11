@@ -1,7 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Bot, Download, Loader2, Send, X } from 'lucide-react'
+import { Bot, Download, Loader2, Send, Square, X } from 'lucide-react'
 import { DEMO_CONFESSION } from '@/lib/agent/factSheet'
 import {
   detectBrowserAiSupport,
@@ -10,12 +10,22 @@ import {
 } from '@/lib/browserAi/detectBrowserAiSupport'
 import { getLanguageModelAvailability } from '@/lib/browserAi/browserLanguageModel'
 import { isWebMcpEnabled } from '@/lib/features'
+import { MAX_CHAT_MESSAGES, MAX_USER_MESSAGE_CHARS, clampString } from '@/lib/siteAi/limits'
 import { runBrowserAgent, type AgentProgress } from '@/lib/siteAi/runAgent'
 import { buildAgentSystemPrompt } from '@/lib/siteAi/systemPrompt'
 import { WEBMCP_TOOL_NAMES } from '@/lib/webmcp/registerTools'
 import { clsx } from 'clsx'
 
 type ChatMessage = { role: 'user' | 'assistant' | 'system'; content: string }
+
+function appendMessages(prev: ChatMessage[], next: ChatMessage | ChatMessage[]): ChatMessage[] {
+  const added = Array.isArray(next) ? next : [next]
+  const merged = [...prev, ...added]
+  if (merged.length <= MAX_CHAT_MESSAGES) return merged
+  const system = merged.filter((m) => m.role === 'system').slice(0, 1)
+  const rest = merged.filter((m) => m.role !== 'system').slice(-(MAX_CHAT_MESSAGES - system.length))
+  return [...system, ...rest]
+}
 
 export function BrowserAiDemo() {
   const [support, setSupport] = useState<BrowserAiSupport | { status: 'checking' }>({
@@ -29,6 +39,8 @@ export function BrowserAiDemo() {
     { role: 'system', content: DEMO_CONFESSION },
   ])
   const abortRef = useRef<AbortController | null>(null)
+  const panelRef = useRef<HTMLDivElement | null>(null)
+  const inputRef = useRef<HTMLInputElement | null>(null)
   const enabled = isWebMcpEnabled()
 
   useEffect(() => {
@@ -37,13 +49,41 @@ export function BrowserAiDemo() {
       return
     }
     let cancelled = false
-    detectBrowserAiSupport().then((s) => {
-      if (!cancelled) setSupport(s)
-    })
+    detectBrowserAiSupport()
+      .then((s) => {
+        if (!cancelled) setSupport(s)
+      })
+      .catch(() => {
+        if (!cancelled) setSupport({ status: 'unsupported', reason: 'model-unavailable' })
+      })
     return () => {
       cancelled = true
+      abortRef.current?.abort()
     }
   }, [enabled])
+
+  const close = useCallback(() => {
+    abortRef.current?.abort()
+    setOpen(false)
+    setBusy(false)
+    setProgress(null)
+  }, [])
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        close()
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    const t = window.setTimeout(() => inputRef.current?.focus(), 50)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      window.clearTimeout(t)
+    }
+  }, [open, close])
 
   const show = shouldShowBrowserAiLauncher(support)
 
@@ -82,11 +122,17 @@ export function BrowserAiDemo() {
     }
   }, [])
 
+  function stop() {
+    abortRef.current?.abort()
+    setBusy(false)
+    setProgress(null)
+  }
+
   async function send() {
-    const text = input.trim()
+    const text = clampString(input.trim(), MAX_USER_MESSAGE_CHARS)
     if (!text || busy) return
     setInput('')
-    setMessages((m) => [...m, { role: 'user', content: text }])
+    setMessages((m) => appendMessages(m, { role: 'user', content: text }))
     setBusy(true)
     setProgress('Starting…')
     abortRef.current?.abort()
@@ -99,17 +145,24 @@ export function BrowserAiDemo() {
         signal: ac.signal,
         onProgress,
       })
+      if (ac.signal.aborted) return
       const toolsNote =
         result.toolCalls.length > 0
-          ? `\n\n_Tools used: ${result.toolCalls.map((t) => t.name).join(', ')}_`
+          ? `\n\nTools used: ${result.toolCalls.map((t) => t.name).join(', ')}`
           : ''
-      setMessages((m) => [
-        ...m,
-        { role: 'assistant', content: `${result.finalText}${toolsNote}` },
-      ])
+      setMessages((m) =>
+        appendMessages(m, {
+          role: 'assistant',
+          content: clampString(`${result.finalText}${toolsNote}`, MAX_USER_MESSAGE_CHARS),
+        }),
+      )
     } catch (e) {
+      if (ac.signal.aborted || (e instanceof DOMException && e.name === 'AbortError')) {
+        setMessages((m) => appendMessages(m, { role: 'assistant', content: 'Stopped.' }))
+        return
+      }
       const msg = e instanceof Error ? e.message : 'Agent failed'
-      setMessages((m) => [...m, { role: 'assistant', content: `Error: ${msg}` }])
+      setMessages((m) => appendMessages(m, { role: 'assistant', content: `Error: ${msg}` }))
     } finally {
       setBusy(false)
       setProgress(null)
@@ -119,27 +172,33 @@ export function BrowserAiDemo() {
   async function enableModel() {
     setBusy(true)
     setProgress('Checking / downloading model…')
+    abortRef.current?.abort()
+    const ac = new AbortController()
+    abortRef.current = ac
     try {
       await getLanguageModelAvailability()
+      if (ac.signal.aborted) return
       const next = await detectBrowserAiSupport()
       setSupport(next)
-      // Trigger create path via a tiny agent turn if downloadable
       if (next.status === 'needs-setup' && next.reason === 'model-downloadable') {
         await runBrowserAgent({
           systemPrompt: buildAgentSystemPrompt(),
           userMessage: 'Call explain_this_demo and summarize in one sentence.',
+          signal: ac.signal,
           onProgress,
         })
-        setSupport(await detectBrowserAiSupport())
+        if (!ac.signal.aborted) {
+          setSupport(await detectBrowserAiSupport())
+        }
       }
     } catch (e) {
-      setMessages((m) => [
-        ...m,
-        {
+      if (ac.signal.aborted || (e instanceof DOMException && e.name === 'AbortError')) return
+      setMessages((m) =>
+        appendMessages(m, {
           role: 'assistant',
           content: `Could not enable model: ${e instanceof Error ? e.message : 'unknown error'}`,
-        },
-      ])
+        }),
+      )
     } finally {
       setBusy(false)
       setProgress(null)
@@ -166,8 +225,14 @@ export function BrowserAiDemo() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="browser-ai-title"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) close()
+          }}
         >
-          <div className="flex max-h-[min(92dvh,720px)] w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl">
+          <div
+            ref={panelRef}
+            className="flex max-h-[min(92dvh,720px)] w-full max-w-lg flex-col overflow-hidden rounded-2xl border border-border bg-background shadow-2xl"
+          >
             <header className="flex items-start justify-between gap-3 border-b border-border px-4 py-3">
               <div>
                 <h2 id="browser-ai-title" className="font-display text-lg font-bold">
@@ -178,7 +243,7 @@ export function BrowserAiDemo() {
               <button
                 type="button"
                 className="rounded-lg p-2 hover:bg-secondary outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                onClick={() => setOpen(false)}
+                onClick={close}
                 aria-label="Close"
               >
                 <X className="h-4 w-4" />
@@ -194,7 +259,7 @@ export function BrowserAiDemo() {
                 <div
                   key={`${m.role}-${i}`}
                   className={clsx(
-                    'rounded-xl px-3 py-2 text-sm leading-relaxed',
+                    'rounded-xl px-3 py-2 text-sm leading-relaxed whitespace-pre-wrap break-words',
                     m.role === 'user' && 'ml-8 bg-primary/15 text-foreground',
                     m.role === 'assistant' && 'mr-4 bg-card border border-border',
                     m.role === 'system' && 'border border-dashed border-border text-muted-foreground',
@@ -244,20 +309,34 @@ export function BrowserAiDemo() {
                 }}
               >
                 <input
+                  ref={inputRef}
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={(e) => setInput(clampString(e.target.value, MAX_USER_MESSAGE_CHARS))}
+                  maxLength={MAX_USER_MESSAGE_CHARS}
                   placeholder="Ask about Katie’s work history, Spotify QA, hire pitch…"
                   className="min-w-0 flex-1 rounded-xl border border-border bg-card px-3 py-2 text-sm outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   disabled={busy || support.status === 'unsupported'}
+                  autoComplete="off"
                 />
-                <button
-                  type="submit"
-                  disabled={busy || !input.trim()}
-                  className="inline-flex items-center justify-center rounded-xl bg-navy px-3 text-white disabled:opacity-50 dark:bg-primary"
-                  aria-label="Send"
-                >
-                  <Send className="h-4 w-4" />
-                </button>
+                {busy ? (
+                  <button
+                    type="button"
+                    onClick={stop}
+                    className="inline-flex items-center justify-center rounded-xl border border-border bg-card px-3 text-foreground"
+                    aria-label="Stop"
+                  >
+                    <Square className="h-4 w-4" />
+                  </button>
+                ) : (
+                  <button
+                    type="submit"
+                    disabled={!input.trim()}
+                    className="inline-flex items-center justify-center rounded-xl bg-navy px-3 text-white disabled:opacity-50 dark:bg-primary"
+                    aria-label="Send"
+                  >
+                    <Send className="h-4 w-4" />
+                  </button>
+                )}
               </form>
             </footer>
           </div>

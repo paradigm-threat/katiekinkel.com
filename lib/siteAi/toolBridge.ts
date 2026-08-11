@@ -18,6 +18,7 @@ import {
   executeScoreSampleOutput,
   executeSearchFacts,
 } from '@/lib/webmcp/toolHandlers'
+import { sanitizeToolArgs, truncateForModel } from '@/lib/siteAi/limits'
 
 export type SiteAiToolCall = {
   name: string
@@ -45,41 +46,60 @@ const HANDLERS: Record<string, ToolHandler> = {
   score_sample_output: executeScoreSampleOutput,
 }
 
+const ALLOWED = new Set(WEBMCP_TOOL_NAMES)
+
 export function toolResultToText(result: CallToolResult): string {
   if (result.isError) {
     const block = result.content?.find((c) => c.type === 'text')
     const text = block && 'text' in block && typeof block.text === 'string' ? block.text : 'Tool error'
-    return `Error: ${text}`
+    return truncateForModel(`Error: ${text}`)
   }
   const block = result.content?.find((c) => c.type === 'text')
   if (block && 'text' in block && typeof block.text === 'string' && block.text) {
-    return block.text
+    return truncateForModel(block.text)
   }
-  return JSON.stringify(result.structuredContent ?? result.content, null, 2)
+  return truncateForModel(JSON.stringify(result.structuredContent ?? result.content, null, 2))
 }
 
 export async function executeSiteAiTool(
   name: string,
   args: Record<string, unknown>,
 ): Promise<string> {
-  if (!WEBMCP_TOOL_NAMES.includes(name)) {
+  if (!ALLOWED.has(name) || !(name in HANDLERS)) {
     return `Error: tool "${name}" is not allowed`
   }
   const handler = HANDLERS[name]
-  if (!handler) return `Error: tool "${name}" is not available`
-  return toolResultToText(await handler(args ?? {}))
+  try {
+    const safeArgs = sanitizeToolArgs(args ?? {})
+    return toolResultToText(await handler(safeArgs))
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : 'tool failed'
+    return `Error: ${msg}`
+  }
 }
 
 export const TOOL_CALL_START = '<<<TOOL_CALL>>>'
 export const TOOL_CALL_END = '<<<END_TOOL_CALL>>>'
 
+const MAX_TOOL_CALL_JSON = 16_000
+
 function parseToolCallJson(jsonSlice: string): SiteAiToolCall | null {
+  if (jsonSlice.length > MAX_TOOL_CALL_JSON) return null
   try {
-    const parsed = JSON.parse(jsonSlice) as { name?: string; arguments?: Record<string, unknown>; args?: Record<string, unknown> }
+    const parsed = JSON.parse(jsonSlice) as {
+      name?: string
+      arguments?: Record<string, unknown>
+      args?: Record<string, unknown>
+    }
     if (!parsed.name || typeof parsed.name !== 'string') return null
+    if (!ALLOWED.has(parsed.name)) return null
+    const rawArgs = parsed.arguments ?? parsed.args ?? {}
+    if (!rawArgs || typeof rawArgs !== 'object' || Array.isArray(rawArgs)) {
+      return { name: parsed.name, arguments: {} }
+    }
     return {
       name: parsed.name,
-      arguments: parsed.arguments ?? parsed.args ?? {},
+      arguments: sanitizeToolArgs(rawArgs as Record<string, unknown>),
     }
   } catch {
     return null
@@ -99,7 +119,7 @@ export function parseToolCall(text: string): SiteAiToolCall | null {
     if (parsed) return parsed
   }
   if (trimmed.startsWith('{') && trimmed.includes('"name"')) {
-    return parseToolCallJson(trimmed)
+    return parseToolCallJson(trimmed.slice(0, MAX_TOOL_CALL_JSON))
   }
   return null
 }

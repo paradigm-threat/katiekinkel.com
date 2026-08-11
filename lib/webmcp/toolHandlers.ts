@@ -1,5 +1,10 @@
 import { DEMO_CONFESSION, getFactSheet, searchFacts } from '@/lib/agent/factSheet'
 import { evaluationCriteria } from '@/lib/content'
+import {
+  clampString,
+  MAX_SCORE_DRAFT_CHARS,
+  MAX_SEARCH_QUERY_CHARS,
+} from '@/lib/siteAi/limits'
 import { toolErrorResult, toolJsonResult } from '@/lib/webmcp/toolResult'
 
 export function executeGetProfileSummary() {
@@ -23,7 +28,7 @@ export function executeGetWorkHistory() {
 }
 
 export function executeGetJobByCompany(args: Record<string, unknown>) {
-  const keyword = String(args.keyword ?? args.company ?? '')
+  const keyword = clampString(args.keyword ?? args.company ?? '', MAX_SEARCH_QUERY_CHARS)
     .trim()
     .toLowerCase()
   if (!keyword) return toolErrorResult('Provide keyword or company')
@@ -68,7 +73,7 @@ export function executeGetResumeLinks() {
 }
 
 export function executeSearchFacts(args: Record<string, unknown>) {
-  const query = String(args.query ?? '').trim()
+  const query = clampString(args.query ?? '', MAX_SEARCH_QUERY_CHARS).trim()
   if (query.length < 2) return toolErrorResult('query must be at least 2 characters')
   return toolJsonResult(searchFacts(query))
 }
@@ -88,7 +93,9 @@ export function executeListCaseStudies() {
 }
 
 export function executeGetCaseStudy(args: Record<string, unknown>) {
-  const title = String(args.title ?? args.name ?? '').trim().toLowerCase()
+  const title = clampString(args.title ?? args.name ?? '', MAX_SEARCH_QUERY_CHARS)
+    .trim()
+    .toLowerCase()
   if (!title) return toolErrorResult('Provide title')
   const found = getFactSheet().caseStudies.find((c) => c.title.toLowerCase().includes(title))
   if (!found) return toolErrorResult(`No case study matching "${title}"`)
@@ -108,9 +115,10 @@ export function executeGetHirePitch() {
 }
 
 export function executeNavigateToSection(args: Record<string, unknown>) {
-  const section = String(args.section ?? args.id ?? '')
+  const section = clampString(args.section ?? args.id ?? '', 64)
     .trim()
     .replace(/^#/, '')
+    .toLowerCase()
   const allowed = ['evaluation', 'proof', 'hire', 'models', 'ai', 'top']
   if (!allowed.includes(section)) {
     return toolErrorResult(`section must be one of: ${allowed.join(', ')}`)
@@ -133,7 +141,7 @@ export function executeExplainThisDemo() {
 }
 
 export function executeScoreSampleOutput(args: Record<string, unknown>) {
-  const text = String(args.text ?? args.draft ?? '').trim()
+  const text = clampString(args.text ?? args.draft ?? '', MAX_SCORE_DRAFT_CHARS).trim()
   if (text.length < 20) {
     return toolErrorResult('Provide a draft of at least 20 characters in text')
   }
@@ -167,7 +175,7 @@ export function executeScoreSampleOutput(args: Record<string, unknown>) {
 
 export function executeOpenCaseStudy(args: Record<string, unknown>) {
   const nav = executeNavigateToSection({ section: 'proof' })
-  const title = String(args.title ?? '').trim()
+  const title = clampString(args.title ?? '', MAX_SEARCH_QUERY_CHARS).trim()
   return toolJsonResult({
     ...(nav.structuredContent as object),
     openedProofSection: true,
