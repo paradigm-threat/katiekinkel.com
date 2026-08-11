@@ -14,15 +14,15 @@ In-browser demo of **WebMCP** + Chrome **Prompt API** (Gemini Nano). Answers abo
 
 ## Detection matrix
 
-| Browser | Prompt API | Native WebMCP | What we do |
-|---------|------------|---------------|------------|
-| Desktop Chrome with Nano + WebMCP | ready | yes | Native `modelContext`; demo FAB |
-| Desktop Chrome with Nano, **no** WebMCP | ready | no | **Install `@mcp-b/webmcp-polyfill`**, register tools, demo FAB |
-| Mobile | — | — | Hidden |
-| No `LanguageModel` | — | — | Hidden |
-| Flag off | — | — | Hidden |
+| Browser | Native WebMCP (`modelContext`) | Prompt API | What we do |
+|---------|--------------------------------|------------|------------|
+| Desktop Chrome + `chrome://flags/#enable-webmcp-testing` + model ready | yes | ready | Demo FAB |
+| Desktop Chrome + flag + model downloadable | yes | downloadable | Demo FAB + Enable model |
+| Desktop Chrome **without** WebMCP flag | no | any | Setup tip card (how to enable flag); **no** demo FAB |
+| Non-Chrome / mobile / no Prompt API | — | — | Hidden |
 
-Polyfill enables in-page `registerTool` + Tool Inspector testing. It does **not** equal Gemini-in-Chrome host access (that needs native WebMCP + origin trial). The in-page chat always calls QA handlers through the local tool bridge.
+Polyfill may still register tools for local testing when forced, but the **public FAB only appears with native WebMCP** (flag enabled).
+
 
 ## Fact-sheet rule
 

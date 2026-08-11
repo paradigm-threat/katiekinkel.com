@@ -1,12 +1,14 @@
 import { isWebMcpEnabled } from '@/lib/features'
-import { isMobileClient, TimeoutError, withTimeout } from '@/lib/browserAi/utils'
+import { isDesktopChrome, isMobileClient, TimeoutError, withTimeout } from '@/lib/browserAi/utils'
+import { nativeWebMcpAvailableAtLoad } from '@/lib/webmcp/nativeAtLoad'
 
-export type BrowserAiUnsupportedReason = 'mobile' | 'no-prompt-api' | 'model-unavailable'
+export type BrowserAiUnsupportedReason = 'mobile' | 'no-prompt-api' | 'model-unavailable' | 'not-chrome'
 
 export type BrowserAiSetupReason =
   | 'feature-disabled'
   | 'detection-timeout'
   | 'model-downloadable'
+  | 'webmcp-flag-required'
 
 export type BrowserAiSupport =
   | { status: 'unsupported'; reason: BrowserAiUnsupportedReason }
@@ -37,11 +39,18 @@ async function detectInner(): Promise<BrowserAiSupport> {
   if (isMobileClient()) {
     return { status: 'unsupported', reason: 'mobile' }
   }
-  if (!hasPromptApi()) {
-    return { status: 'unsupported', reason: 'no-prompt-api' }
-  }
   if (!isWebMcpEnabled()) {
     return { status: 'needs-setup', reason: 'feature-disabled' }
+  }
+  // Demo requires Chrome + chrome://flags/#enable-webmcp-testing (native modelContext).
+  if (!isDesktopChrome()) {
+    return { status: 'unsupported', reason: 'not-chrome' }
+  }
+  if (!nativeWebMcpAvailableAtLoad()) {
+    return { status: 'needs-setup', reason: 'webmcp-flag-required' }
+  }
+  if (!hasPromptApi()) {
+    return { status: 'unsupported', reason: 'no-prompt-api' }
   }
 
   let modelStatus: string
@@ -55,8 +64,6 @@ async function detectInner(): Promise<BrowserAiSupport> {
     return { status: 'unsupported', reason: 'model-unavailable' }
   }
 
-  // Install WebMCP polyfill when native modelContext is missing (common on
-  // Prompt-API Chrome builds that do not yet enable WebMCP).
   const { initWebMcp } = await import('@/lib/webmcp/init')
   const webmcp = await initWebMcp()
 
@@ -68,8 +75,6 @@ async function detectInner(): Promise<BrowserAiSupport> {
     }
   }
 
-  // In-page agent uses the tool bridge + Prompt API; polyfill is best-effort
-  // for registerTool / inspector — do not block the demo if it fails.
   return {
     status: 'ready',
     modelStatus,
@@ -90,12 +95,19 @@ export async function detectBrowserAiSupport(): Promise<BrowserAiSupport> {
   }
 }
 
-/** Show launcher when desktop Prompt API exists and feature is on (incl. downloadable). */
+/** Floating AI demo — only when WebMCP flag is on and the on-device model is usable or installable. */
 export function shouldShowBrowserAiLauncher(
   support: BrowserAiSupport | { status: 'checking' },
 ): boolean {
   if (support.status === 'checking') return false
-  if (support.status === 'unsupported') return false
-  if (support.status === 'needs-setup' && support.reason === 'feature-disabled') return false
-  return true
+  if (support.status === 'ready') return true
+  if (support.status === 'needs-setup' && support.reason === 'model-downloadable') return true
+  return false
+}
+
+/** Chrome tip card — WebMCP testing flag not enabled yet. */
+export function shouldShowWebMcpSetupHint(
+  support: BrowserAiSupport | { status: 'checking' },
+): boolean {
+  return support.status === 'needs-setup' && support.reason === 'webmcp-flag-required'
 }

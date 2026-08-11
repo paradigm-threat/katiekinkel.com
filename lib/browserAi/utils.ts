@@ -3,6 +3,14 @@ export function isMobileClient(): boolean {
   return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)
 }
 
+/** Desktop Google Chrome (WebMCP testing flag lives here). */
+export function isDesktopChrome(): boolean {
+  if (typeof navigator === 'undefined') return false
+  if (isMobileClient()) return false
+  const ua = navigator.userAgent
+  return /Chrome\/\d+/i.test(ua) && !/Edg\/|OPR\/|CriOS\//i.test(ua)
+}
+
 export class TimeoutError extends Error {
   constructor(label: string) {
     super(`${label} timed out`)

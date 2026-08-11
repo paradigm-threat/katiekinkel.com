@@ -22,7 +22,7 @@ const LM_OPTIONS = {
   expectedOutputs: [{ type: 'text' as const, languages: ['en'] }],
 }
 
-const LM_CREATE_TIMEOUT_MS = 120_000
+const LM_CREATE_TIMEOUT_MS = 90_000
 
 export async function getLanguageModelAvailability(): Promise<string> {
   if (typeof window === 'undefined' || !window.LanguageModel?.availability) {
@@ -90,7 +90,9 @@ export async function createBrowserLanguageModelSession(
     }
   } catch (e) {
     if (timedOut && !options?.signal?.aborted) {
-      throw new Error('Language model create timed out — try again after the model finishes downloading.')
+      throw new Error(
+        'On-device model download timed out. Open chrome://on-device-internals, confirm Gemini Nano can finish downloading, then reload this page and try again.',
+      )
     }
     throw e
   } finally {
