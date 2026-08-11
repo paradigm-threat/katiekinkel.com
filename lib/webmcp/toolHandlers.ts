@@ -65,6 +65,7 @@ export function executeGetSpotifyQaProof() {
   const caseStudy = s.caseStudies.find((c) => /spotify/i.test(c.title))
   return toolJsonResult({
     spotifyProofLine: s.spotifyProofLine,
+    note: 'Spotify / 24-7 Intouch work was human QA only (2019–2022). Katie’s AI QA work begins in 2025.',
     jobs: spotifyJobs,
     caseStudy: caseStudy ?? null,
   })

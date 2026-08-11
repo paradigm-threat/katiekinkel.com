@@ -94,8 +94,9 @@ export function SpotifyProofStrip() {
             Spotify Support / QA experience
           </p>
           <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Via 24-7 Intouch: QA audits, alignments, nesting assistance, Guru process feedback,
-            LIO &amp; Marquee ROTAs, and the CrS Phoenix Hub — 3+ years Creative Support / QA Buddy.
+            Via 24-7 Intouch (2019–2022): QA audits, alignments, nesting assistance, Guru process
+            feedback, LIO &amp; Marquee ROTAs, and the CrS Phoenix Hub — 3+ years Creative Support /
+            QA Buddy. Human QA only; AI tools came later (2025+).
           </p>
         </div>
         <a
@@ -288,8 +289,8 @@ export function Proof() {
             Case studies
           </h2>
           <p className="mt-3 max-w-2xl text-muted-foreground">
-            Problem → AI used → what Katie reviewed → result. Flagship projects lead; Spotify QA
-            proof sits near the top.
+            AI projects are from 2025 onward (Problem → AI used → what Katie reviewed → result).
+            Spotify Support / QA (2019–2022) is earlier human QA proof — no AI in that role.
           </p>
         </FadeIn>
         <ol className="mt-10 grid gap-6">

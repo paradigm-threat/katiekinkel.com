@@ -128,7 +128,7 @@ const doc = new Document({
           spacing: { before: 0, after: 160 },
           children: [
             new TextRun({
-              text: 'AI QA, Evaluation & Operations Specialist with 3+ years of Spotify support QA via 24-7 Intouch. Evaluates LLM output for instruction following, accuracy, tone, and hallucinations — then organizes AI-assisted ops work so teams can ship with confidence.',
+              text: 'AI QA, Evaluation & Operations Specialist since 2025, with 3+ years of earlier Spotify support QA via 24-7 Intouch (human QA — no AI in that role). Evaluates LLM output for instruction following, accuracy, tone, and hallucinations — then organizes AI-assisted ops work so teams can ship with confidence.',
               size: 19,
               color: MUTED,
               italics: true,
@@ -141,9 +141,17 @@ const doc = new Document({
           title: 'Independent AI QA & Evaluation Specialist',
           company: 'Independent',
           location: 'Remote / Savannah area',
-          duration: '2022 – Present',
+          duration: '2025 – Present',
           description:
             'LLM evaluation, human-in-the-loop review, and AI-assisted operations. Uses Cursor, GitHub Copilot, and ChatGPT for research, drafting, QA, prototyping, and ops — with human review as the quality gate on every deliverable.',
+        }),
+        ...experienceItem({
+          title: 'Independent community & operations support',
+          company: 'Independent',
+          location: 'Remote / Savannah area',
+          duration: '2022 – 2025',
+          description:
+            'Neighborhood association minutes, rescue coordination, outreach, and support communications — organized and fact-checked without AI tools.',
         }),
         ...experienceItem({
           title: 'Creative Support / QA Buddy',
@@ -151,7 +159,7 @@ const doc = new Document({
           location: 'Phoenix, AZ',
           duration: '2019 – 2022',
           description:
-            'Started on @SpotifyCares (Khoros), promoted to Creative Support L3 (Salesforce), then QA Buddy. Ran LIO & Marquee ROTAs, built and maintained the CrS Phoenix Hub, gave Guru process feedback, and performed QA audits, alignments, and nesting assistance.',
+            'Started on @SpotifyCares (Khoros), promoted to Creative Support L3 (Salesforce), then QA Buddy. Ran LIO & Marquee ROTAs, built and maintained the CrS Phoenix Hub, gave Guru process feedback, and performed QA audits, alignments, and nesting assistance. Human QA only — no AI tools in this role.',
         }),
         ...experienceItem({
           title: 'Independent Tutor',

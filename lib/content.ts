@@ -22,7 +22,7 @@ export const heroSubheadline =
   'AI QA, LLM evaluation, human-in-the-loop review, and AI-assisted operations — available for remote part-time and contract work.'
 
 export const spotifyProofLine =
-  'Previous QA experience: Spotify support program via 24-7 Intouch.'
+  'Previous QA experience (2019–2022): Spotify support program via 24-7 Intouch — human QA only; AI work starts in 2025.'
 
 export const reliabilityRefrain =
   'AI generates; Katie evaluates, corrects, organizes, and ships.'
@@ -207,7 +207,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       'Need a clear customer-support email rewrite that follows instructions, stays factual, and sounds on-brand — without inventing policy details.',
     aiUsed:
-      'Same prompt to ChatGPT, Claude, and Gemini. Portfolio evaluation exercise (not client-confidential).',
+      '2025 portfolio exercise: same prompt to ChatGPT, Claude, and Gemini (not client-confidential).',
     reviewed:
       'Scored each draft on instruction following, factual accuracy, completeness, tone, formatting, and hallucinations. Flagged invented policy language and incomplete next steps; improved the prompt and picked a corrected final.',
     result:
@@ -232,7 +232,8 @@ export const caseStudies: CaseStudy[] = [
     flagship: true,
     problem:
       'Scattered meeting notes, action items, and side chats needed a single accurate deliverable volunteers could trust.',
-    aiUsed: 'ChatGPT + Cursor to draft structured minutes and an action tracker from raw notes.',
+    aiUsed:
+      '2025: ChatGPT + Cursor to draft structured minutes and an action tracker from raw notes.',
     reviewed:
       'Checked names, dates, votes, and owners line by line; removed invented attendees and vague “someone will…” actions; fixed formatting for scannability.',
     result:
@@ -253,7 +254,7 @@ export const caseStudies: CaseStudy[] = [
     flagship: true,
     problem:
       'Creative Support needed consistent quality across nesting, process docs, and live work — not just ticket volume.',
-    aiUsed: 'N/A (pre-LLM role) — human QA audits, alignments, and process feedback.',
+    aiUsed: 'None — human QA only (2019–2022). No AI tools in this role.',
     reviewed:
       'QA audits and alignments, nesting assistance, Guru process feedback, LIO & Marquee ROTAs, and maintenance of the CrS Phoenix Hub team resource.',
     result:
@@ -264,7 +265,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Legal aid support communications',
     problem:
       'A disabled person needed accurate paperwork and communications without risky AI inventions.',
-    aiUsed: 'ChatGPT for first-pass drafts of letters and forms language.',
+    aiUsed: '2025: ChatGPT for first-pass drafts of letters and forms language.',
     reviewed:
       'Line-by-line factual and tone review before anything was sent; corrected incomplete fields and overconfident phrasing.',
     result: 'Reviewed communications that stayed accurate and respectful under human sign-off.',
@@ -273,7 +274,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Gordonston Neighborhood Association minutes',
     problem:
       'Association meetings needed reliable minutes on a volunteer timeline.',
-    aiUsed: 'AI for speed on first drafts of minutes and agendas.',
+    aiUsed: '2025: AI for speed on first drafts of minutes and agendas.',
     reviewed:
       'Human QA for accuracy of motions, attendance, and action owners before publishing.',
     result: 'Clear, neighbor-friendly minutes maintained as GNA secretary.',
@@ -282,7 +283,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Local cat rescue coordination',
     problem:
       'Rescue logistics and outreach notes were easy to drop under volunteer load.',
-    aiUsed: 'AI-assisted drafting for outreach notes and coordination lists.',
+    aiUsed: '2025: AI-assisted drafting for outreach notes and coordination lists.',
     reviewed:
       'Verified details, contacts, and next steps so volunteers could move without missing care items.',
     result: 'Faster day-to-day coordination with fewer dropped details.',
@@ -291,7 +292,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Website prototypes & proofreading',
     problem:
       'Stakeholders needed something real to react to — not another vague brief.',
-    aiUsed: 'Cursor / Copilot / ChatGPT for site prototypes and copy variants.',
+    aiUsed: '2025: Cursor / Copilot / ChatGPT for site prototypes and copy variants.',
     reviewed:
       'Proofreading and UX clarity pass so pages ship clean, readable, and on-message.',
     result: 'Prototypes ready for feedback with a human quality gate.',
@@ -303,9 +304,17 @@ export const experience = [
     title: 'Independent AI QA & Evaluation Specialist',
     company: 'Independent',
     location: 'Remote / Savannah area',
-    duration: '2022 – Present',
+    duration: '2025 – Present',
     description:
       'LLM evaluation, human-in-the-loop review, and AI-assisted operations. Uses Cursor, GitHub Copilot, and ChatGPT for research, drafting, QA, prototyping, and ops — with human review as the quality gate on every deliverable.',
+  },
+  {
+    title: 'Independent community & operations support',
+    company: 'Independent',
+    location: 'Remote / Savannah area',
+    duration: '2022 – 2025',
+    description:
+      'Neighborhood association minutes, rescue coordination, outreach, and support communications — organized and fact-checked without AI tools.',
   },
   {
     title: 'Creative Support / QA Buddy',
@@ -313,7 +322,7 @@ export const experience = [
     location: 'Phoenix, AZ',
     duration: '2019 – 2022',
     description:
-      'Started on @SpotifyCares (Khoros), promoted to Creative Support L3 (Salesforce), then QA Buddy. Ran LIO & Marquee ROTAs, built and maintained the CrS Phoenix Hub, gave Guru process feedback, and performed QA audits, alignments, and nesting assistance.',
+      'Started on @SpotifyCares (Khoros), promoted to Creative Support L3 (Salesforce), then QA Buddy. Ran LIO & Marquee ROTAs, built and maintained the CrS Phoenix Hub, gave Guru process feedback, and performed QA audits, alignments, and nesting assistance. Human QA only — no AI tools in this role.',
   },
   {
     title: 'Independent Tutor',
@@ -368,7 +377,7 @@ export const also = [
 ] as const
 
 export const summary =
-  'AI QA, Evaluation & Operations Specialist with 3+ years of Spotify support QA via 24-7 Intouch. Evaluates LLM output for instruction following, accuracy, tone, and hallucinations — then organizes AI-assisted ops work so teams can ship with confidence.'
+  'AI QA, Evaluation & Operations Specialist since 2025, with 3+ years of earlier Spotify support QA via 24-7 Intouch (human QA — no AI in that role). Evaluates LLM output for instruction following, accuracy, tone, and hallucinations — then organizes AI-assisted ops work so teams can ship with confidence.'
 
 export const objective =
   'Available for remote part-time and contract work in AI QA, LLM evaluation, human-in-the-loop review, and AI-assisted operations.'

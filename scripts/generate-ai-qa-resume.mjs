@@ -132,7 +132,7 @@ const doc = new Document({
           spacing: { before: 120, after: 20 },
           children: [
             bold('Independent AI QA & Evaluation Specialist', { size: 20 }),
-            muted('  ·  Remote  ·  2022 – Present', { size: 17 }),
+            muted('  ·  Remote  ·  2025 – Present', { size: 17 }),
           ],
         }),
         bullet(
@@ -144,6 +144,16 @@ const doc = new Document({
         new Paragraph({
           spacing: { before: 120, after: 20 },
           children: [
+            bold('Independent community & operations support', { size: 20 }),
+            muted('  ·  Remote  ·  2022 – 2025', { size: 17 }),
+          ],
+        }),
+        bullet(
+          'Neighborhood association minutes, rescue coordination, outreach, and support communications — without AI tools.',
+        ),
+        new Paragraph({
+          spacing: { before: 120, after: 20 },
+          children: [
             bold('Creative Support / QA Buddy', { size: 20 }),
             muted('  ·  24-7 Intouch / Spotify  ·  2019 – 2022', { size: 17 }),
           ],
@@ -151,7 +161,9 @@ const doc = new Document({
         bullet(
           'QA audits, alignments, nesting assistance, Guru process feedback; LIO & Marquee ROTAs; maintained CrS Phoenix Hub.',
         ),
-        bullet('3+ years Spotify support program via 24-7 Intouch (Creative Support L3 → QA Buddy).'),
+        bullet(
+          '3+ years Spotify support via 24-7 Intouch (Creative Support L3 → QA Buddy). Human QA only — no AI in this role.',
+        ),
         new Paragraph({
           spacing: { before: 120, after: 20 },
           children: [

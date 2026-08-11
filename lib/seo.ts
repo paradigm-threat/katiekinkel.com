@@ -7,7 +7,7 @@ export const SITE_NAME = 'Katie Kinkel'
 export const SITE_TITLE =
   'Katie Kinkel | AI QA, LLM Evaluation & Human-in-the-Loop Specialist'
 export const SITE_DESCRIPTION =
-  'AI QA and evaluation specialist with Spotify support QA experience. Human-in-the-loop review, LLM evaluation, AI-assisted operations and research. Available for remote part-time and contract work.'
+  'AI QA and evaluation specialist (since 2025) with earlier Spotify support QA experience (human QA, 2019–2022). Human-in-the-loop review, LLM evaluation, AI-assisted operations and research. Available for remote part-time and contract work.'
 
 export function absoluteUrl(path = '/'): string {
   if (path === '/' || path === '') return `${SITE_URL}/`
