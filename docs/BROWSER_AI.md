@@ -2,7 +2,7 @@
 
 *Last reviewed: 2026-08-10 (America/New_York)*
 
-Self-admitting demo of **WebMCP** + Chrome **Prompt API** (Gemini Nano). Answers about Katie’s résumé / site / work history come from MCP tools over `lib/agent/factSheet.ts` — not model invention. Site stack chips live in Skills (`#stack`) as literacy, not a solo-engineer claim.
+In-browser demo of **WebMCP** + Chrome **Prompt API** (Gemini Nano). Answers about Katie’s résumé / site / work history come from MCP tools over `lib/agent/factSheet.ts`. Site stack chips live in Skills (`#stack`).
 
 ## Flags
 

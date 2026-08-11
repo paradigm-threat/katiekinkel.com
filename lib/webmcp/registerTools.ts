@@ -118,7 +118,7 @@ const TOOLS: AnyTool[] = [
     },
   }, executeNavigateToSection),
 
-  wrap('explain_this_demo', 'Self-admitting stack demo confession (WebMCP + Gemini + LLM-agent-built).', {
+  wrap('explain_this_demo', 'Explain the in-page WebMCP + on-device Gemini demo and site stack.', {
     type: 'object',
     properties: {},
   }, () => executeExplainThisDemo()),

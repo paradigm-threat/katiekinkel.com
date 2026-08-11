@@ -103,7 +103,7 @@ export const techFocus = [
   { label: 'Communication', icon: 'message' as const },
 ] as const
 
-/** Public stack for this portfolio — literacy, not a claim she engineers it solo. */
+/** Public stack for this portfolio site. */
 export const siteStack = [
   'Next.js',
   'React',
@@ -118,7 +118,7 @@ export const siteStack = [
 ] as const
 
 export const siteStackQuip =
-  'I don’t rebuild the engine every morning — but I know what’s under the hood of the car I’m driving.'
+  'This portfolio runs on a modern web stack — useful context for AI QA work with product and engineering teams.'
 
 export const skillTags = [
   { label: 'LLM evaluation', icon: 'shield' as const },
@@ -374,4 +374,4 @@ export const objective =
   'Available for remote part-time and contract work in AI QA, LLM evaluation, human-in-the-loop review, and AI-assisted operations.'
 
 export const missionQuote =
-  'AI generates; Katie evaluates, corrects, organizes, and ships — human judgment is the quality gate. Stack literacy counts too: you can drive without forging the pistons, and still know what’s humming under the hood.'
+  'AI generates; Katie evaluates, corrects, organizes, and ships — human judgment is the quality gate.'

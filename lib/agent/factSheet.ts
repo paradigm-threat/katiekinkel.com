@@ -23,7 +23,7 @@ import {
 } from '@/lib/content'
 
 export const DEMO_CONFESSION =
-  'I’m a browser demo of WebMCP + on-device Gemini on this Next.js portfolio — ordered up with LLM agents that know the stack. Katie knows what’s under the hood of the car she’s driving; she doesn’t have to forge every piston. I answer from structured site/resume facts via MCP tools — I don’t invent her work history.'
+  'I’m an on-page demo of WebMCP and Chrome’s on-device Gemini (Prompt API) on this Next.js portfolio. I answer questions about Katie and this site using structured facts from MCP tools on the page.'
 
 export type FactSheet = {
   name: string
@@ -110,7 +110,7 @@ export function getFactSheet(): FactSheet {
       confession: DEMO_CONFESSION,
       stack: [...siteStack],
       orderedBy:
-        'This site and agent were ordered into existence through LLM agents with knowledge of the stack — demonstrating modern in-browser AI and human QA judgment as Katie’s hire proposition. Stack literacy ≠ solo engineering: Katie can name the parts under the hood. When the browser has the Prompt API but not native WebMCP, we load the @mcp-b/webmcp-polyfill so tools still register for the in-page demo.',
+        'This portfolio uses Next.js with an in-browser AI demo (WebMCP + Chrome Prompt API). When the browser has the Prompt API but not native WebMCP, the page loads @mcp-b/webmcp-polyfill so tools still register for the demo.',
     },
   }
 }

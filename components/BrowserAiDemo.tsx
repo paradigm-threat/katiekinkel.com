@@ -20,7 +20,7 @@ type ChatMessage = { role: 'user' | 'assistant' | 'system'; content: string }
 
 const STARTER_PROMPTS = [
   'What kind of work history does she have?',
-  'What’s under the hood of this site?',
+  'What is this site built with?',
   'What’s her Spotify QA proof?',
   'Give me a short hire pitch.',
 ] as const
