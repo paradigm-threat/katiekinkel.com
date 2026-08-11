@@ -21,6 +21,15 @@ npm run build
 
 Site contact links use `linkedinUrl` and `email` from `lib/content.ts`.
 
+## Browser AI demo (WebMCP + on-device Gemini)
+
+Progressive FAB when the visitor’s desktop Chrome exposes the Prompt API. Answers about Katie’s résumé/history come from QA MCP tools over `lib/agent/factSheet.ts`. See [docs/BROWSER_AI.md](docs/BROWSER_AI.md).
+
+```bash
+# .env.local
+NEXT_PUBLIC_WEBMCP_ENABLED=1
+```
+
 ## Branch
 
 Default branch: **`main`** (GitLab).

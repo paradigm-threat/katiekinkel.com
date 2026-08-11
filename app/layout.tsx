@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Outfit, Source_Sans_3 } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { BrowserAiProviders } from '@/components/BrowserAiProviders'
 import { JsonLd } from '@/components/JsonLd'
 import { baseMetadata } from '@/lib/seo'
 import './globals.css'
@@ -33,12 +34,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const webmcpOt = process.env.NEXT_PUBLIC_WEBMCP_ORIGIN_TRIAL_TOKEN
+
   return (
     <html
       lang="en"
       className={`${display.variable} ${body.variable} scroll-smooth`}
       suppressHydrationWarning
     >
+      <head>
+        {webmcpOt ? <meta httpEquiv="origin-trial" content={webmcpOt} /> : null}
+      </head>
       <body className="min-h-dvh font-sans antialiased">
         <ThemeProvider
           attribute="class"
@@ -47,7 +53,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <JsonLd />
-          {children}
+          <BrowserAiProviders>{children}</BrowserAiProviders>
         </ThemeProvider>
       </body>
     </html>

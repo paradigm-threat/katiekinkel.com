@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@icons-pack/react-simple-icons": "^13.13.0",
+    "@mcp-b/webmcp-polyfill": "^3.0.0",
+    "@mcp-b/webmcp-types": "^3.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^13.0.0",
     "lucide-react": "^0.562.0",
