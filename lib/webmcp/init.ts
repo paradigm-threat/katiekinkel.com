@@ -3,7 +3,7 @@ import { hasNativeModelContext } from '@/lib/webmcp/modelContext'
 import { nativeWebMcpAvailableAtLoad } from '@/lib/webmcp/nativeAtLoad'
 import { registerAllWebMcpTools } from '@/lib/webmcp/registerTools'
 
-let initPromise: Promise<{ usedPolyfill: boolean; registered: boolean }> | null = null
+let initPromise: Promise<WebMcpInitResult> | null = null
 
 export type WebMcpInitResult = {
   usedPolyfill: boolean
@@ -24,7 +24,7 @@ export async function initWebMcp(): Promise<WebMcpInitResult> {
   }
   if (initPromise) return initPromise
 
-  initPromise = (async () => {
+  initPromise = (async (): Promise<WebMcpInitResult> => {
     const nativeAtLoad = nativeWebMcpAvailableAtLoad()
     const native = hasNativeModelContext()
     let usedPolyfill = false
