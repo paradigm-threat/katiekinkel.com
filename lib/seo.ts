@@ -40,7 +40,7 @@ export const baseMetadata: Metadata = {
   publisher: SITE_NAME,
   category: 'portfolio',
   alternates: {
-    canonical: '/',
+    canonical: absoluteUrl('/'),
   },
   icons: {
     icon: [
@@ -55,7 +55,7 @@ export const baseMetadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: SITE_URL,
+    url: absoluteUrl('/'),
     siteName: SITE_NAME,
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,

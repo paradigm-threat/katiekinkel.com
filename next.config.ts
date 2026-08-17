@@ -2,6 +2,22 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: '/',
+        has: [{ type: 'host', value: 'www.katiekinkel.com' }],
+        destination: 'https://katiekinkel.com/',
+        permanent: true,
+      },
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.katiekinkel.com' }],
+        destination: 'https://katiekinkel.com/:path*',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
